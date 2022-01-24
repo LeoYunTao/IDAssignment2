@@ -12,7 +12,7 @@ Features:
 ---
 
 Flow of webpage:
-- When users access the website, they would be greeted with a start game page where they would be introduced to the game mechanics and press a start button when ready.
+-> When users access the website, they would be greeted with a start game page where they would be introduced to the game mechanics and press a start button when ready.
 - We made this page so that when the user loads the webpage, the timer does not start counting. We want the user to understand the game and be ready before proceeding.
 - Upon pressing start, the user would be transferred to the main catalog page where a the game starts and a timer would appear at the corner of the screen.
 -  Gameplay
