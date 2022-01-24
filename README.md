@@ -9,7 +9,7 @@ Features:
 -A shopping cart page
 -A end of game page
 
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+---
 
 Flow of webpage:
 -> When users access the website, they would be greeted with a start game page where they would be introduced to the game mechanics and press a start button when ready.
@@ -23,8 +23,8 @@ Flow of webpage:
   -The score would be displayed and the user can enter their names in a small box to be shown on a scoreboard after the user presses proceed.
   -Players can view the scoreboard and try another round at the game
 -> At the end of the game, users can convert their scores into points to redeem rewards for other ecommerce sites (E.g Lazada, Google Play, Amazon, Zalora, PayPal Gift cards)
-  
-------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ 
+---
 
 Technologies:
 -HTML for placing content on website
