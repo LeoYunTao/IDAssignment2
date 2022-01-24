@@ -20,8 +20,9 @@ Flow of webpage:
   -Users would then go search for the product on the website and add it to cart as quickly as possible
   -Users would then proceed to checkout where they press a finish button to end the game.
   -Once user ends the game the timer and score would be calculated based on their accuracy of their purchases and the time remaining.
-  -The score would bve displayed and the user can enter their names in a small box to be shown on a scoreboard after the user presses proceed.
+  -The score would be displayed and the user can enter their names in a small box to be shown on a scoreboard after the user presses proceed.
   -Players can view the scoreboard and try another round at the game
+-> At the end of the game, users can convert their scores into points to redeem rewards for other ecommerce sites (E.g Lazada, Google Play, Amazon, Zalora, PayPal Gift cards)
   
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
