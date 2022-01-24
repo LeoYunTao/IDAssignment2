@@ -3,11 +3,11 @@ Project Name:
 ECommerce speedrun
 
 Features:
--A start page for the game
--A catalog page with products
--A product description page (Zoomed in view of product)
--A shopping cart page
--A end of game page
+- A start page for the game
+- A catalog page with products
+- A product description page (Zoomed in view of product)
+- A shopping cart page
+- A end of game page
 
 ---
 
