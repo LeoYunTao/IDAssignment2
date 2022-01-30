@@ -1,4 +1,4 @@
-# IDAssignment2
+# ECommerce speedrun
 Project Name:
 ECommerce speedrun
 
