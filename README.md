@@ -1,6 +1,8 @@
 # ECommerce speedrun
-Project Name:
-ECommerce speedrun
+-----------------------
+
+Sales Pitch of project:
+YOUR SPEED WILL DETERMINE YOUR RESULTS! SPEEDRUN YOUR WAY TO VICTORY with OUR new game; TARGETIME! An eCommerce speedrun game! Featuring; A website with the combination of a game with the themes of an eCommerce site. Race against time and compete with other players to get the best time! Do tasks! Add items to the shopping cart! Complete the shopping list! And click your way to victory! What's more? Win attractive prizes when you make it onto the leaderboard!
 
 Features:
 - A start page for the game
