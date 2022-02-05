@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TARGETIME</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar">
+        <ul>
+            <li>ECOMMERCIUM</li>
+            <li class="timer">INSERT TIMER HERE</a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li><a href=""><img src="" alt=""></a></li>
+            <li class="quitButton"><a href=""><img src="" alt=""></a></li>
+        </ul> 
+    </nav>
+
+    <section class="headerBanner">
+        <header>
+            <p>Dummy Shop</p>
+            <h1 class="searchResult"></h1>
+        </header>
+    </section>
+    <section id="itemFilter">
+        <div class="searchBar">
+            <form action="/action_page.php">
+                <input type="text" placeholder="Search for your items here">
+                <button type="submit">Search</i></button>
+            </form>
+        </div>
+        <div class="cartItem">
+            <img src="" alt="">
+            <p><!-- Insert a counter here -->></p>
+        </div>
+        <!-- Text need to be change depending on what is available in the api -->
+        <div id="myBtnContainer">
+            <button class="btn" onclick="filterSelection('clothes')"> Clothes</button>
+            <button class="btn" onclick="filterSelection('electronic')"> Electronic Devices</button>
+            <button class="btn" onclick="filterSelection('food')"> Food</button>
+            <button class="btn" onclick="filterSelection('furniture')"> Furniture</button>
+        </div>
+    </section>
+    <br>
+    <br>
+    <br>
+    <section>
+        <div>
+            <p><span id="resultNum"></span> results for <span id="productName"></span></p>
+        </div>
+        <div class="dropdown">
+            <p>Sort By:</p>
+            <!-- Need to change the filter name  -->
+            <button onclick="myFunction()" class="dropbtn"><span id="filterName">Name Ascending   &or;</span></button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Name Ascending</a>
+                <a href="#">Price Ascending</a>
+                <a href="#">Rating Descending</a>
+            </div>
+        </div>
+        <!-- There is a problem here, how many items are we suppose to display??? Search results can vary depending on the number of items -->
+        <div class="item-container">
+            <div class="flex-item">
+                <div class="flex-img">
+                    <img src="" alt="">
+                </div>
+                <div class="flex-info">
+                    <div>
+                        <!-- Place category name and number of sales here -->
+                    </div>
+                    <h3></h3>
+                    <br>
+                    <br>
+                    <p></p>
+                </div>
+                <div class="hover-add-btn">
+                    <button class="add-cart-btn" onclick="">ADD TO CART</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; Yun Tao, Ming Feng</p>
+    </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</body>
+</html>
