@@ -17,6 +17,10 @@ if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') =
             delete item.material;
             delete item.uid;
             delete item.color;
+            
+            // Items sold in thousands
+            let itemsSold = parseInt(Math.random() * 100);
+            item.itemsSold = itemsSold;
 
             // Add image to item
             $.ajax({
@@ -27,7 +31,9 @@ if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') =
                 }
 
                 item.thumbnailImageURL = result.hits[0].webformatURL;
-                item.largeImageURL = result.hits[0].largeImageURL;;
+                item.largeImageURL1 = result.hits[0].largeImageURL;
+                item.largeImageURL2 = result.hits[1].largeImageURL;
+
             }).fail(error => {
                 console.log(error);
             });

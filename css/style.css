@@ -2,8 +2,6 @@
     --main-color: #E24D4D;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Roboto');
-
 * {
     margin: 0;
     padding: 0;
@@ -99,7 +97,10 @@ hr {
 /* Nav bar section */
 
 header {
-    margin-top: 30px;
+    padding: 5px 0;
+    background-color: #fff;
+    border-bottom: 1px solid #e0e6f0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
 }
 
 header .navbar-brand {
@@ -154,6 +155,7 @@ header .nav-link.btn-primary {
     min-width: 290px;
     max-width: 290px;
     text-decoration: none !important;
+    color: initial !important;
 }
 
 .catalog .card-full button {
@@ -253,6 +255,13 @@ footer {
     z-index: 0;
 }
 
+.blackhr {
+    border-color:black;
+}
+
+#nav-info {
+    color: aqua;
+}
 /** image to be displayed in flexboxes **/
 /*
 .gridImg {

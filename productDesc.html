@@ -7,54 +7,109 @@
     <title>TARGETIME</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
     integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&family=Roboto&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <section class="headerBanner">
-        <header>
-            <p>Dummy Shop</p>
-            <h1 class="searchResult"></h1>
-            <h3 id="navInfo">Home > Product Description</h3>
-        </header>
-    </section>
-    <hr>
+    <header class="fixed-top">
+        <div class="navbar navbar-expand-md navbar-light container">
+            <a class="navbar-brand col-5" href="catalogPage.html">commercium</a>
+            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                    <section class="d-flex align-items-center ms-5">
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_2Lm1d0.json" background="transparent"  speed="1"  style="height: 40px; width: auto;"  loop  autoplay>
+                        </lottie-player>
+                        <p id="timer" class="mb-0">00:00:00</p>
+                    </section>
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link active mx-2" aria-current="page" href="#"><img src="images/list_alt_black_24dp.svg" alt="task-list"></a>
+                        <a class="nav-link mx-2" href="catalogPage.html"><img src="images/replay_black_24dp.svg" alt="restart-game"></a>
+                        <a class="nav-link mx-2" href="index.html"><img src="images/close_black_24dp.svg" width="28px" alt="end-game"></a>
+                    </div>
+                </div>
+            </div>            
+        </div>
+    </header>
 
-    <section class="item-container">
-        <div class="flex-item">
-            <!-- Do you want this to be slideshow of the images of the product or just one image? -->
-            <img src="" alt="">
-        </div>
-        <div class="flex-item">
-            <h3 class="prodName"><!-- Product Name --></h3>
-            <p class="prodRating"><!-- Product Rating --></p>
-            <p class="prodMaker"><!-- Product Maker and Category --></p>
-            <p class="prodDesc"><!-- Product Description --></p>
-            <p class="prodPrice"><!-- Product Price --></p>
-        </div>
-    </section>
-    <section class="orderSection">
-        <div>
-            <h4>Quantity</h4>
-        </div>
-        <div>
-            <button class="add-cart-btn">ADD TO CART</button>
-        </div>
-    </section>
-    <section class="">
-        <h3>Product Reviews</h3>
-    </section>
-    <section classs="reviews">
-        <!-- Add content for product reviews here -->
-    </section>
-    <br>
-    <hr>
-    <br>
-    <footer>
+    <main class="container mt-7">
+        <p class="mb-1 lh-1 mt-8"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Product Description</p>
+        <h2 class="mt-0 mb-0">A very good lightbulb</h2>
+        <hr width="33.33%">
+    
+        <section class="mt-6 row gx-5">
+            <div class="col-12 col-md-7">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner rounded">
+                      <div class="carousel-item active" data-bs-interval="3000">
+                        <img src="images/close-up-gd4212656f_1920.jpg" class="d-block img-fluid w-100" alt="...">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="3000">
+                        <img src="images/apple-gbe6255b58_1920.jpg" class="d-block img-fluid w-100" alt="...">
+                      </div>
+                      <div class="carousel-item" data-bs-interval="3000">
+                        <img src="images/apple-gbe6255b58_1920.jpg" class="d-block img-fluid w-100" alt="...">
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="col-12 col-md-5" style="position: relative;">
+                <!-- <h3 id="prodName">A very goodd lightbulb</h3> -->
+                <p id="prodRating"><!-- Product Rating --></p>
+                <span class="p fs-5 me-2"><i class="bi bi-tags-fill"></i> Electronics</span>
+                <span class="p fs-5"><i class="bi bi-bag-fill"></i> 900K</span>
+                <h3 class="mt-3">Product Description</h3>
+                <p id="prodDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut dignissim mauris. Pellentesque aliquam sit amet mi egestas accumsan. Phasellus fermentum orci vitae feugiat rhoncus. Curabitur aliquam porta placerat. Fusce et lacus in augue egestas interdum. Ut facilisis eget arcu vel egestas. Integer imperdiet lacus nec porttitor pulvinar. </p>
+                <h4 class="mt-4">S$100.00</h4>
+                
+                <div class="row" style="position: absolute; bottom: 10px;">
+                    <div class="col-12 col-md-6">
+                        <input type="number" class="form-control form-control-lg h-100" min="0" max="100">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <input type="submit" class="btn btn-primary" value="ADD TO CART">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="mt-7 ">
+            <h2 class="text-center">Product Reviews</h2>
+        </section>
+        <section classs="reviews">
+            <!-- Add content for product reviews here -->
+        </section>
+    </main>
+    
+    <footer class="container">
         <p>&copy; Yun Tao, Ming Feng</p>
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 </html>
