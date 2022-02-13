@@ -180,6 +180,12 @@ header .nav-link.btn-primary {
     border-color: #008da0;
 }
 
+/* Product Description page */
+.product-add-to-cart {
+    position: absolute; 
+    bottom: 10px;
+}
+
 /* footer section */
 
 footer {
@@ -291,6 +297,12 @@ footer {
     display: block;
 }
 **/
+
+@media only screen and (max-width: 1200px) {
+    .product-add-to-cart {
+        position: static;
+    }
+}
 
 @media only screen and (max-width: 768px) {
     #index-page .row:first-child, #index-page .row:nth-child(2), #index-page .row:last-child {

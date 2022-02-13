@@ -45,9 +45,9 @@
         <h2 class="mt-0 mb-0">A very good lightbulb</h2>
         <hr width="33.33%">
     
-        <section class="mt-6 row gx-5">
-            <div class="col-12 col-md-7">
-                <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <section class="mt-6 row gx-0 gx-md-5">
+            <div class="col-12 col-lg-7">
+                <div id="carouselExampleDark" class="carousel carousel-dark slide w-100" data-bs-ride="carousel">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
                         <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -75,31 +75,56 @@
                 </div>
             </div>
             
-            <div class="col-12 col-md-5" style="position: relative;">
+            <div class="col-12 col-lg-5" style="position: relative;">
                 <!-- <h3 id="prodName">A very goodd lightbulb</h3> -->
                 <p id="prodRating"><!-- Product Rating --></p>
                 <span class="p fs-5 me-2"><i class="bi bi-tags-fill"></i> Electronics</span>
                 <span class="p fs-5"><i class="bi bi-bag-fill"></i> 900K</span>
                 <h3 class="mt-3">Product Description</h3>
-                <p id="prodDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut dignissim mauris. Pellentesque aliquam sit amet mi egestas accumsan. Phasellus fermentum orci vitae feugiat rhoncus. Curabitur aliquam porta placerat. Fusce et lacus in augue egestas interdum. Ut facilisis eget arcu vel egestas. Integer imperdiet lacus nec porttitor pulvinar. </p>
+                <p id="prodDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut dignissim mauris. Pellentesque aliquam sit amet mi egestas accumsan. Phasellus fermentum orci vitae feugiat rhoncus. Curabitur aliquam porta placerat. </p>
                 <h4 class="mt-4">S$100.00</h4>
                 
-                <div class="row" style="position: absolute; bottom: 10px;">
-                    <div class="col-12 col-md-6">
-                        <input type="number" class="form-control form-control-lg h-100" min="0" max="100">
+                <div class="row product-add-to-cart mt-4">
+                    <div class="col-12 col-xl-6">
+                        <input type="number" class="form-control form-control-lg h-100" value="1" min="0" max="100">
                     </div>
-                    <div class="col-12 col-md-6">
-                        <input type="submit" class="btn btn-primary" value="ADD TO CART">
+                    <div class="col-12 col-xl-6 mt-3 mt-xl-0">
+                        <input type="submit" class="btn btn-primary w-100" value="ADD TO CART">
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="mt-7 ">
+        <section class="mt-8">
             <h2 class="text-center">Product Reviews</h2>
-        </section>
-        <section classs="reviews">
-            <!-- Add content for product reviews here -->
+            <div class="card text-dark bg-light mt-6 mb-4">
+                <div class="card-header">12 Jan 2022</div>
+                <div class="card-body">
+                  <h5 class="card-title"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i></h5>
+                  <p class="card-text">Awesome product! - Anthony</p>
+                </div>
+            </div>
+            <div class="card text-dark bg-light mb-4">
+                <div class="card-header">12 Jan 2022</div>
+                <div class="card-body">
+                  <h5 class="card-title"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i></h5>
+                  <p class="card-text">Awesome product! - Anthony</p>
+                </div>
+            </div>
+            <div class="card text-dark bg-light mb-4">
+                <div class="card-header">12 Jan 2022</div>
+                <div class="card-body">
+                  <h5 class="card-title"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i></h5>
+                  <p class="card-text">Awesome product! - Anthony</p>
+                </div>
+            </div>
+            <div class="card text-dark bg-light mb-4">
+                <div class="card-header">12 Jan 2022</div>
+                <div class="card-body">
+                  <h5 class="card-title"><i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-fill"></i> <i class="bi bi-star-half"></i></h5>
+                  <p class="card-text">Awesome product! - Anthony</p>
+                </div>
+            </div>
         </section>
     </main>
     
