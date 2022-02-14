@@ -4,7 +4,54 @@ const PIXABAY_API_KEY = "9602505-f76ea265b3e81cda17324512f";
 const ITEMS_COUNT = 100;
 
 if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') == "[]" || sessionStorage.getItem('items') == "") {
-    
+    generateAndStoreItems();
+
+    if (sessionStorage.getItem("user") == null || sessionStorage.getItem("user") == "") {
+        generateAndStoreUser();
+    }
+}
+
+let items = JSON.parse(sessionStorage.getItem('items'));
+let user = JSON.parse(sessionStorage.getItem('user'));
+
+console.log(items);
+console.log(user);
+
+function generateAndStoreUser() {
+    $.ajax({
+        url: `https://random-data-api.com/api/users/random_user`
+    }).done(user => {
+        delete user.uid;
+        delete user.password;
+        delete user.username;
+        delete user.social_insurance_number;
+        delete user.employment;
+        delete user.address.coordinates;
+        delete user.subscription;
+
+        user.credit_card.credit_card_name = (user.last_name + " " + user.first_name).toUpperCase();
+        user.credit_card.CVV = parseInt(Math.random() * 1000);
+
+        let currentDate = new Date(Date.now());
+        let expirationDate = new Date(currentDate.setMonth(currentDate.getMonth() + parseInt(Math.random() * 48))) ;
+        user.credit_card.expiration_date = expirationDate.getFullYear() + "-" + expirationDate.getMonth();
+
+        user.taskList = [];
+        
+        let itemsCount = parseInt(Math.random() * (ITEMS_COUNT * 0.1));
+        for (let i = 0; i < itemsCount; i++) {
+            user.taskList.push({
+                itemIndex: parseInt(Math.random() * ITEMS_COUNT),
+                quantity: parseInt(Math.random() * 10)
+            });
+        }
+
+        sessionStorage.setItem("user", JSON.stringify(user));
+        console.log(user);
+    });
+}
+
+function generateAndStoreItems() {
     let items = [];
 
     $.ajax({
@@ -17,7 +64,7 @@ if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') =
             delete item.material;
             delete item.uid;
             delete item.color;
-            
+
             // Items sold in thousands
             let itemsSold = parseInt(Math.random() * 100);
             item.itemsSold = itemsSold;
@@ -46,7 +93,3 @@ if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') =
         console.log(items);
     });
 }
-
-let items = JSON.parse(sessionStorage.getItem('items'));
-
-console.log(items);
