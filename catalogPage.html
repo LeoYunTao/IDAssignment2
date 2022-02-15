@@ -25,207 +25,6 @@
   </head>
 
   <body>
-    <div
-      class="modal fade"
-      id="exampleModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalLabel">User Information</h4>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <img
-              src="https://robohash.org/exdelenitiet.png?size=300x300&set=set1"
-              alt=""
-              srcset=""
-            />
-            <p>First Name: Anjanette</p>
-            <p>Last Name: Beahan</p>
-            <p>Gender: Female</p>
-            <p>Email: anjanette.beahan@email.com</p>
-            <p>Phone Number: +1-246 642-967-6617 x8577</p>
-            <p>Date of Birth: 1965-09-09</p>
-            <p>Country: United States</p>
-            <p>State: California</p>
-            <p>City: Lake Joesphmouth</p>
-            <p>Street Address: 2411 Hauck Light</p>
-            <p>Zip Code: 07482-0762</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-light btn-sm"
-              data-bs-target="#exampleModal"
-              data-bs-toggle="modal"
-              disabled
-            >
-              <i class="bi bi-arrow-left-short fs-2 lh-1"></i>
-            </button>
-            <p>1 / 3</p>
-            <button
-              class="btn btn-light btn-sm"
-              data-bs-target="#exampleModalToggle2"
-              data-bs-toggle="modal"
-            >
-              <i class="bi bi-arrow-right-short fs-2 lh-1"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="exampleModalToggle2"
-      aria-hidden="true"
-      aria-labelledby="exampleModalToggleLabel2"
-      tabindex="-1"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalToggleLabel2">
-              Card Details
-            </h4>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>Name On Card: Anjanette Beahan</p>
-            <p>Credit Card Number: 4811-7656-4465-2264</p>
-            <p>CVV: 666</p>
-            <p>Expiry Date: 12/24</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-light btn-sm"
-              data-bs-target="#exampleModal"
-              data-bs-toggle="modal"
-            >
-              <i class="bi bi-arrow-left-short fs-2 lh-1"></i>
-            </button>
-            <p>2 / 3</p>
-            <button
-              class="btn btn-light btn-sm"
-              data-bs-target="#exampleModalToggle3"
-              data-bs-toggle="modal"
-            >
-              <i class="bi bi-arrow-right-short fs-2 lh-1"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div
-      class="modal fade"
-      id="exampleModalToggle3"
-      aria-hidden="true"
-      aria-labelledby="exampleModalToggleLabel2"
-      tabindex="-1"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title" id="exampleModalToggleLabel2">Items</h4>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body">
-            <p>Product Name: A very good lightbulb</p>
-            <p>Quantity: 1</p>
-            <p>Product Name: A very good lightbulb</p>
-            <p>Quantity: 1</p>
-            <p>Product Name: A very good lightbulb</p>
-            <p>Quantity: 1</p>
-          </div>
-          <div class="modal-footer">
-            <button
-              class="btn btn-light btn-sm"
-              data-bs-target="#exampleModalToggle2"
-              data-bs-toggle="modal"
-            >
-              <i class="bi bi-arrow-left-short fs-2 lh-1"></i>
-            </button>
-            <p>3 / 3</p>
-            <button
-              class="btn btn-light btn-sm"
-              data-bs-target="#exampleModalToggle3"
-              data-bs-toggle="modal"
-              disabled
-            >
-              <i class="bi bi-arrow-right-short fs-2 lh-1"></i>
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <header class="fixed-top">
-      <div class="navbar navbar-expand-md navbar-light container">
-        <a class="navbar-brand col-5" href="catalogPage.html">commercium</a>
-        <button
-          class="navbar-toggler ms-auto"
-          type="button"
-          data-bs-toggle="collapse"
-          data-bs-target="#navbarNavAltMarkup"
-          aria-controls="navbarNavAltMarkup"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-          <section class="d-flex align-items-center ms-5">
-            <lottie-player
-              src="https://assets1.lottiefiles.com/packages/lf20_2Lm1d0.json"
-              background="transparent"
-              speed="1"
-              style="height: 40px; width: auto"
-              loop
-              autoplay
-            >
-            </lottie-player>
-            <p id="timer" class="mb-0">00:00:00</p>
-          </section>
-          <div class="navbar-nav ms-auto">
-            <button
-              class="btn nav-link active mx-2"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
-            >
-              <img src="images/list_alt_black_24dp.svg" alt="task-list" />
-            </button>
-            <a class="btn nav-link mx-2" href="catalogPage.html"
-              ><img src="images/replay_black_24dp.svg" alt="restart-game"
-            /></a>
-            <a class="btn nav-link mx-2" href="index.html"
-              ><img
-                src="images/close_black_24dp.svg"
-                width="28px"
-                alt="end-game"
-            /></a>
-          </div>
-        </div>
-      </div>
-    </header>
-
     <section class="container mt-8">
       <p class="mb-0 fs-3 lh-1">Welcome!</p>
       <h1 class="mt-0"><span class="main-color">Dummy</span> Shop</h1>
@@ -267,14 +66,14 @@
           </div>
           <div class="carousel-item" data-bs-interval="3000">
             <img
-              src="images/apple-gbe6255b58_1920.jpg"
+              src="images/animal-6889575_1920.jpg"
               class="d-block img-fluid w-100"
               alt="..."
             />
           </div>
           <div class="carousel-item" data-bs-interval="3000">
             <img
-              src="images/apple-gbe6255b58_1920.jpg"
+              src="images/home-3593857_1920.jpg"
               class="d-block img-fluid w-100"
               alt="..."
             />
@@ -399,162 +198,9 @@
       </div>
     </section>
 
-    <header class="container mt-8">
+    <div class="container mt-8">
       <h2>Explore</h2>
-    </header>
-
-    <!--     
-    <section id="popular" class="container mt-5 d-flex">
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-    </section>
-
-    <header class="container mt-5">
-        <h2>Explore</h2>
-    </header>
-    
-    <section id="explore" class="container mt-5 d-flex">
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-
-        <div class="col-3 border item d-inline">
-            <div class="img-fluid">
-                <img class="gridImg p-2" src="images/close-up-gd4212656f_1920.jpg" alt="a-light-bulb">
-            </div>
-            <div class="p-3">
-                <div class="d-flex">
-                    <p class="d-flex justify-content-start">Electronics</p>
-                    <p class="d-flex justify-content-end">Household</p>
-                </div>
-                <h3>A very good lightbulb</h3>
-                <br>
-                <p>S$100.00</p>
-            </div>
-            <div>
-                <button class="atc btn btn-block col-12" onclick="">ADD TO CART</button>
-            </div>
-        </div>
-    </section> -->
+    </div>
 
     <footer class="container">
       <p>&copy; Yun Tao & Ming Feng 2022. All rights reserved.</p>
@@ -562,6 +208,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/catalog.js"></script>
+    <script src="js/main.js"></script>
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
