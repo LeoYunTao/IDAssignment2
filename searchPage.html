@@ -36,28 +36,42 @@
         </div>
     </header>
 
-    <section class="container mt-7">
-        <p class="mb-1 lh-1"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Product Description</p>
-        <h1 class="searchResult mt-0">LightBulb</h1>
+    <section class="container mt-8">
+        <p class="mb-1 lh-1"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Search</p>
+        <h1 class="searchResult mt-0">Search</h1>
     </section>
     <section class="container mt-5">
-        <div class="mb-4 d-flex">
-            <div class="form-floating mb-3 button-in-search-bar me-4">
-                <input type="text" class="form-control form-control-lg rounded-4" id="floatingInput" placeholder="name@example.com">
-                <label for="floatingInput"><i class="bi bi-search"></i> &nbsp; Search for your items here</label>
-                <input type="submit" class="btn btn-primary btn-sm d-flex rounded-4" value="Search">
-            </div>
-            <a href="#" class="btn btn-primary rounded-4 fs-5"><i class="bi bi-cart-fill"></i> 0</a>
-            
+        <div class="mb-4 d-flex flex-wrap">
+          <div class="form-floating mb-3 button-in-search-bar me-4">
+            <input
+              type="text"
+              class="form-control form-control-lg rounded-4"
+              id="floatingInput"
+              placeholder="name@example.com"
+            />
+            <label for="floatingInput"
+              ><i class="bi bi-search"></i> &nbsp; Search for your items
+              here</label
+            >
+            <input
+              type="submit"
+              class="btn btn-primary btn-sm d-flex rounded-4"
+              value="Search"
+            />
+          </div>
+          <a href="checkout.html" class="btn btn-primary rounded-4 fs-5 me-4 mb-3"
+            ><i class="bi bi-cart-fill"></i> 0</a
+          >
+          <div class="dropdown d-lg-none" id="filter-category">
+            <button class="btn btn-primary dropdown-toggle" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
+              Category
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="filter-category-btn"></ul>
+          </div>
         </div>
         <!-- Text need to be change depending on what is available in the api -->
-        <div>
-            <button class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill" onclick="filterSelection('clothes')"> Clothes</button>
-            <button class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill" onclick="filterSelection('electronic')"> Electronic Devices</button>
-            <button class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill" onclick="filterSelection('food')"> Food</button>
-            <button class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill" onclick="filterSelection('furniture')"> Furniture</button>
-        </div>
-    </section>
+        <div id="category" class="d-lg-block d-none"></div>
+      </section>
     <br>
     <br>
     <br>

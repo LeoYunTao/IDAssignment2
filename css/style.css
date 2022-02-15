@@ -236,6 +236,10 @@ footer {
     border-radius: 10px;
 }
 
+.rounded-5 {
+    border-radius: 20px;
+}
+
 .button-in-search-bar {
     position: relative;
 }
@@ -322,5 +326,9 @@ footer {
 
     #index-page .row:last-child {
         margin-top: 120px;
+    }
+
+    html {
+        font-size: 12px;
     }
 }

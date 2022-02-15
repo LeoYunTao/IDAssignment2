@@ -101,6 +101,24 @@
     </section>
 
     <section class="container mt-7">
+      <h2 class="d-flex justify-content-center">Flash Sales!</h2>
+      <div class="card bg-dark text-white rounded-3">
+        <img
+          class="img-fluid card-img rounded-3"
+          src="images/supermarket-g5a1bd86ae_1920.jpg"
+          alt="fresh-vegetables"
+        />
+        <div
+          class="card-img-overlay img-caption rounded-3 h-100 d-flex flex-column justify-content-center"
+        >
+          <h3 class="card-text">Get your fresh vegetables and fruits now!</h3>
+          <h4 class="card-text">All fresh food products are 20% off!</h4>
+          <p class="card-text">- Promotion -</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container mt-7">
       <div class="mb-4 d-flex flex-wrap">
         <div class="form-floating mb-3 button-in-search-bar me-4">
           <input
@@ -119,57 +137,21 @@
             value="Search"
           />
         </div>
-        <a href="checkout.html" class="btn btn-primary rounded-4 fs-5"
+        <a href="checkout.html" class="btn btn-primary rounded-4 fs-5 me-4 mb-3"
           ><i class="bi bi-cart-fill"></i> 0</a
         >
-      </div>
-      <!-- Text need to be change depending on what is available in the api -->
-      <div>
-        <button
-          class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill"
-          onclick="filterSelection('clothes')"
-        >
-          Clothes
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill"
-          onclick="filterSelection('electronic')"
-        >
-          Electronic Devices
-        </button>
-        <button
-          class="btn btn-primary btn-sm me-3 mb-3 rounded-pill"
-          onclick="filterSelection('food')"
-        >
-          Food
-        </button>
-        <button
-          class="btn btn-outline-primary btn-sm me-3 mb-3 rounded-pill"
-          onclick="filterSelection('furniture')"
-        >
-          Furniture
-        </button>
-      </div>
-    </section>
-    <section class="container mt-7">
-      <h2 class="d-flex justify-content-center">Flash Sales!</h2>
-      <div class="card bg-dark text-white rounded-3">
-        <img
-          class="img-fluid card-img rounded-3"
-          src="images/supermarket-g5a1bd86ae_1920.jpg"
-          alt="fresh-vegetables"
-        />
-        <div
-          class="card-img-overlay img-caption rounded-3 h-100 d-flex flex-column justify-content-center"
-        >
-          <h3 class="card-text">Get your fresh vegetables and fruits now!</h3>
-          <h4 class="card-text">All fresh food products are 20% off!</h4>
-          <p class="card-text">- Promotion -</p>
+        <div class="dropdown d-lg-none" id="filter-category">
+          <button class="btn btn-primary dropdown-toggle" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="filter-category-btn"></ul>
         </div>
       </div>
+      <!-- Text need to be change depending on what is available in the api -->
+      <div id="category" class="d-lg-block d-none"></div>
     </section>
 
-    <section class="container mt-8">
+    <section class="container mt-5">
       <h2>Popular</h2>
     </section>
 
@@ -198,9 +180,34 @@
       </div>
     </section>
 
-    <div class="container mt-8">
+    <div class="container mt-5">
       <h2>Explore</h2>
     </div>
+
+    <section class="container" id="explore">
+      <div class="card-group catalog">
+        <div class="card-full">
+          <a href="productDesc.html" class="card rounded-4">
+            <img
+              src="images/close-up-gd4212656f_1920.jpg"
+              class="card-img-top rounded-4"
+              alt="..."
+            />
+            <div class="card-body">
+              <span class="p me-2"
+                ><i class="bi bi-tags-fill"></i> Electronics</span
+              >
+              <span class="p"><i class="bi bi-bag-fill"></i> 900K</span>
+              <h4 class="card-title mt-1">A Very Good lightbulb</h4>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <h4>S$100.00</h4>
+            </div>
+          </a>
+          <button class="btn btn-primary">ADD TO CART</button>
+        </div>
+      </div>
+    </section>
 
     <footer class="container">
       <p>&copy; Yun Tao & Ming Feng 2022. All rights reserved.</p>

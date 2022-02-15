@@ -30,10 +30,10 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     aria-labelledby="exampleModalLabel"
     aria-hidden="true"
     >
-    <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content text-center">
         <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalLabel">User Information</h4>
+        <h4 class="modal-title" id="exampleModalLabel"><i class="bi bi-person-circle"></i> User Profile</h4>
         <button
             type="button"
             class="btn-close"
@@ -42,22 +42,22 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
         ></button>
         </div>
         <div class="modal-body">
-        <img
+        <img class="rounded-circle shadow justify-content-center col-7 mb-3"
             src="${user.avatar}"
             alt=""
             srcset=""
         />
-        <p>First Name: ${user.first_name}</p>
-        <p>Last Name: ${user.last_name}</p>
-        <p>Gender: ${user.gender}</p>
-        <p>Email: ${user.email}</p>
-        <p>Phone Number: ${user.phone_number}</p>
-        <p>Date of Birth: ${user.date_of_birth}</p>
-        <p>Country: ${user.address.country}</p>
-        <p>State: ${user.address.state}</p>
-        <p>City: ${user.address.city}</p>
-        <p>Street Address: ${user.address.street_address}</p>
-        <p>Zip Code: ${user.address.zip_code}</p>
+        <p><i class="bi bi-person-fill"></i> First Name ~ ${user.first_name}</p>
+        <p><i class="bi bi-person-fill"></i> Last Name ~ ${user.last_name}</p>
+        <p><i class="bi bi-gender-ambiguous"></i> Gender ~ ${user.gender}</p>
+        <p><i class="bi bi-envelope-fill"></i> Email ~ ${user.email}</p>
+        <p><i class="bi bi-telephone-fill"></i> Phone Number ~ ${user.phone_number}</p>
+        <p><i class="bi bi-calendar-fill"></i> Date of Birth ~ ${user.date_of_birth}</p>
+        <p><i class="bi bi-globe2"></i> Country ~ ${user.address.country}</p>
+        <p><i class="bi bi-image-fill"></i> State ~ ${user.address.state}</p>
+        <p><i class="bi bi-building"></i> City ~ ${user.address.city}</p>
+        <p><i class="bi bi-signpost-split-fill"></i> Street Address ~ ${user.address.street_address}</p>
+        <p><i class="bi bi-house-door-fill"></i> Zip Code ~ ${user.address.zip_code}</p>
         </div>
         <div class="modal-footer">
         <button
@@ -91,7 +91,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     <div class="modal-content">
         <div class="modal-header">
         <h4 class="modal-title" id="exampleModalToggleLabel2">
-            Credit Card Details
+            <i class="bi bi-credit-card-2-front-fill"></i> Credit Card Details
         </h4>
         <button
             type="button"
@@ -100,11 +100,14 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             aria-label="Close"
         ></button>
         </div>
-        <div class="modal-body">
-        <p>Name On Card: ${user.credit_card.credit_card_name}</p>
-        <p>Credit Card Number: ${user.credit_card.cc_number}</p>
-        <p>CVV: ${user.credit_card.CVV}</p>
-        <p>Expiry Date: ${user.credit_card.expiration_date}</p>
+        <div class="modal-body border border-3 rounded-5">
+        <h1 class="navbar-brand col-5 fs-3 fw-bolder mt-3">COMMERCIUM Member</h1>
+        <h1 class="mt-0 ms-3"><i class="bi bi-columns"></i></h1>
+        <h3 class="mb-0 fw">${user.credit_card.cc_number}</h3>
+        <h4 class="fw-lighter fs-6 m-0 mb-0">VALID-THRU:<br>${user.credit_card.expiration_date}</h4>
+        <h3 class="m-0">${user.credit_card.credit_card_name}</h3>
+        <p class="lh-1 mb-0 text-end">CVV ${user.credit_card.CVV}</p>
+        
         </div>
         <div class="modal-footer">
         <button
@@ -266,10 +269,79 @@ function generateAndStoreUser() {
     })
 }
 
+if (window.location.pathname == "/catalogPage.html" || window.location.pathname == "/searchPage.html") {
+    let url = new URL(window.location.href);
+
+
+    let categorySearched = null;
+    if (url.searchParams.get("category") != null) {
+        categorySearched = url.searchParams.get("category").split(",");
+    }
+
+    let categories = JSON.parse(sessionStorage.getItem('categories'));
+    categories.forEach(category => {
+        if (categorySearched != null && categorySearched.includes(category))
+        {
+            $("#category").append(`<button class="btn btn-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
+        }
+        else
+        {
+            $("#category").append(`<button class="btn btn-outline-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
+        }
+        $("#filter-category .dropdown-menu").append(`<li><a class="dropdown-item" href="searchPage.html?category=${category}">${category}</a></li>`);
+    });
+
+    let items = JSON.parse(sessionStorage.getItem('items'));
+    items.forEach(item => {
+        $("#explore").append(`
+        <div class="card-group catalog">
+        <div class="card-full">
+          <a href="productDesc.html?productId=${item.id}" class="card rounded-4">
+            <img
+              src="images/${item.image}"
+              class="card-img-top rounded-4"
+              alt="..."
+            />
+            <div class="card-body">
+              <span class="p me-2"
+                ><i class="bi bi-tags-fill"></i> Electronics</span
+              >
+              <span class="p"><i class="bi bi-bag-fill"></i> 900K</span>
+              <h4 class="card-title mt-1">A Very Good lightbulb</h4>
+            </div>
+            <div class="card-footer bg-transparent border-0">
+              <h4>S$100.00</h4>
+            </div>
+          </a>
+          <button class="btn btn-primary">ADD TO CART</button>
+        </div>
+        </div>
+        `)
+    });
+}
+
+function filterCategory(category) {
+
+    let url = new URL(window.location.href);
+
+    if (url.searchParams.get("category") == null) {
+        url.searchParams.set("category", category);
+
+    } else {
+        if (url.searchParams.get("category").split(",").includes(category)) {
+            url.searchParams.set("category", url.searchParams.get("category").split(",").filter(item => item != category).join(","));
+        } else {
+            url.searchParams.set("category", url.searchParams.get("category") + "," + category);
+        }
+    }
+
+    window.location.href = "/searchPage.html?" + url.searchParams;
+}
+
 function generateAndStoreItems() {
     let items = [];
 
-    return fetch(`https://random-data-api.com/api/commerce/random_commerce?size=${ITEMS_COUNT}`)
+    fetch(`https://random-data-api.com/api/commerce/random_commerce?size=${ITEMS_COUNT}`)
     .then(response => response.json())
     .then(result => {
         result.forEach(item => {
@@ -285,32 +357,47 @@ function generateAndStoreItems() {
             item.itemsSold = itemsSold;
 
             // Add image to item
-            $.ajax({
-                url: `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&orientation=horizontal&editors_choice=true&per_page=3&q=${item.product_name.split(' ')[item.product_name.split(' ').length - 1]}`
-            }).done(result => {
+            return fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&orientation=horizontal&editors_choice=true&per_page=3&q=${item.product_name.split(' ')[item.product_name.split(' ').length - 1]}`)
+            .then(response => response.json())
+            .then(result => {
                 if (result.hits.length <= 0) {
                     // Put a default image
                 }
-
+                
                 item.thumbnailImageURL = result.hits[0].webformatURL;
                 item.largeImageURL1 = result.hits[0].largeImageURL;
                 item.largeImageURL2 = result.hits[1].largeImageURL;
 
-            }).fail(error => {
-                console.log(error);
+                items.push(item);
             });
-
-            items.push(item);
         });
 
+
+    }).then(() => {
         sessionStorage.setItem("items", JSON.stringify(items));
     });
+}
+
+function getItemsCategory() {
+    let items = JSON.parse(sessionStorage.getItem('items'));
+    let categories = [];
+    items.forEach(item => {
+        item.department.split(" & ").forEach(category => {
+            if (!categories.includes(category)) {
+                categories.push(category);
+            }
+        });
+    });
+
+    return categories;
 }
 
 function startGame() {  
     generateAndStoreItems()
     .finally( () => {
         generateAndStoreUser().finally( () => {
+            let categories = getItemsCategory();
+            sessionStorage.setItem("categories", JSON.stringify(categories));
             window.location.href = "/catalogPage.html";
         });
     });
