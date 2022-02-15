@@ -11,12 +11,6 @@ if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') =
     }
 }
 
-let items = JSON.parse(sessionStorage.getItem('items'));
-let user = JSON.parse(sessionStorage.getItem('user'));
-
-console.log(items);
-console.log(user);
-
 function generateAndStoreUser() {
     $.ajax({
         url: `https://random-data-api.com/api/users/random_user`
