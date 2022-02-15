@@ -219,7 +219,7 @@ footer {
 }
 
 .carousel-inner {
-    border: 5px solid var(--main-color);
+    border: 2px solid var(--main-color);
 }
 
 .carousel-inner > .item > img {
@@ -267,6 +267,13 @@ footer {
 
 #nav-info {
     color: aqua;
+}
+
+#checkOutLottie {
+    z-index: 1;
+    position: relative;
+    left: 31%;
+    bottom: 33%;
 }
 /** image to be displayed in flexboxes **/
 /*
