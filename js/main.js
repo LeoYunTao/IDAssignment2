@@ -9,13 +9,13 @@ console.log(window.location.pathname);
 if (window.location.pathname != "/index.html" && window.location.pathname != "/")
 {
 
-    // if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') == "[]" || sessionStorage.getItem('items') == "") {
-    //     window.location.href = "/index.html"
+    if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') == "[]" || sessionStorage.getItem('items') == "") {
+        window.location.href = "/index.html"
 
-    //     if (sessionStorage.getItem("user") == null || sessionStorage.getItem("user") == "") {
-    //         window.location.href = "/index.html"
-    //     }
-    // }
+        if (sessionStorage.getItem("user") == null || sessionStorage.getItem("user") == "") {
+            window.location.href = "/index.html"
+        }
+    }
 
     let items = JSON.parse(sessionStorage.getItem('items'));
     let user = JSON.parse(sessionStorage.getItem('user'));
