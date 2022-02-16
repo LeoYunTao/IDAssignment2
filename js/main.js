@@ -54,7 +54,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
         <p><i class="bi bi-telephone-fill"></i> Phone Number ~ ${user.phone_number}</p>
         <p><i class="bi bi-calendar-fill"></i> Date of Birth ~ ${user.date_of_birth}</p>
         <p><i class="bi bi-globe2"></i> Country ~ ${user.address.country}</p>
-        <p><i class="bi bi-image-fill"></i> State ~ ${user.address.state}</p>
+        <p><i class="bi bi-bank"></i> State ~ ${user.address.state}</p>
         <p><i class="bi bi-building"></i> City ~ ${user.address.city}</p>
         <p><i class="bi bi-signpost-split-fill"></i> Street Address ~ ${user.address.street_address}</p>
         <p><i class="bi bi-house-door-fill"></i> Zip Code ~ ${user.address.zip_code}</p>
@@ -221,7 +221,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     </header>`);
 
     user.taskList.forEach(product => {
-        $("#itemList").append(`<p>Product Name: ${items[product.itemIndex].product_name}</p> <p>Quantity: ${product.quantity}</p>`);
+        $("#itemList").append(`<div class="border border-3 rounded my-3"><p><i class="bi bi-exclamation-square-fill"></i> Product - ${items[product.itemIndex].product_name}</p> <p><i class="bi bi-123"></i> Quantity - ${product.quantity}</p></div>`);
     });
 
 }
