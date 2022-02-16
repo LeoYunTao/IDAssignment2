@@ -292,32 +292,54 @@ if (window.location.pathname == "/catalogPage.html" || window.location.pathname 
     });
 
     let items = JSON.parse(sessionStorage.getItem('items'));
-    items.forEach(item => {
+
+    const numberOfDisplayedItems = 8;
+    let currentItem = 0;
+    for (let i = currentItem; i < currentItem + numberOfDisplayedItems; i++) {
+        const item = items[i];
+        
         $("#explore").append(`
-        <div class="card-group catalog">
         <div class="card-full">
-          <a href="productDesc.html?productId=${item.id}" class="card rounded-4">
-            <img
-              src="images/${item.image}"
-              class="card-img-top rounded-4"
-              alt="..."
-            />
+          <a href="productDesc.html?productId=${i}" class="card rounded-4">
+            <div class="card-background" style="background-image: url('${item.thumbnailImageURL}');" class="card-img-top rounded-4"></div>
             <div class="card-body">
               <span class="p me-2"
-                ><i class="bi bi-tags-fill"></i> Electronics</span
-              >
-              <span class="p"><i class="bi bi-bag-fill"></i> 900K</span>
-              <h4 class="card-title mt-1">A Very Good lightbulb</h4>
+                ><i class="bi bi-tags-fill"></i> ${item.department}</span
+              > 
+              <h4 class="card-title mt-1">${item.product_name}</h4>
             </div>
             <div class="card-footer bg-transparent border-0">
-              <h4>S$100.00</h4>
+              <h4>S$${(Math.round(item.price * 100) / 100).toFixed(2)}</h4>
             </div>
           </a>
           <button class="btn btn-primary">ADD TO CART</button>
         </div>
-        </div>
-        `)
-    });
+        `);
+    }
+
+    // items.forEach(item => {
+    //     $("#explore").append(`
+    //     <div class="card-full">
+    //       <a href="productDesc.html?productId=${item.id}" class="card rounded-4">
+    //         <div class="card-background" style="background-image: url('${item.thumbnailImageURL}');" class="card-img-top rounded-4"></div>
+    //         <div class="card-body">
+    //           <span class="p me-2"
+    //             ><i class="bi bi-tags-fill"></i> ${item.department}</span
+    //           > 
+    //           <h4 class="card-title mt-1">${item.product_name}</h4>
+    //         </div>
+    //         <div class="card-footer bg-transparent border-0">
+    //           <h4>S$${(Math.round(item.price * 100) / 100).toFixed(2)}</h4>
+    //         </div>
+    //       </a>
+    //       <button class="btn btn-primary">ADD TO CART</button>
+    //     </div>
+    //     `);
+    // });
+
+    //TODO Loads the items 10 at at a time
+
+    //   <span class="p"><i class="bi bi-bag-fill"></i> ${item.itemsSold}K</span>
 }
 
 function filterCategory(category) {
@@ -341,7 +363,7 @@ function filterCategory(category) {
 function generateAndStoreItems() {
     let items = [];
 
-    fetch(`https://random-data-api.com/api/commerce/random_commerce?size=${ITEMS_COUNT}`)
+    return fetch(`https://random-data-api.com/api/commerce/random_commerce?size=${ITEMS_COUNT}`)
     .then(response => response.json())
     .then(result => {
         result.forEach(item => {
@@ -356,20 +378,20 @@ function generateAndStoreItems() {
             let itemsSold = parseInt(Math.random() * 100);
             item.itemsSold = itemsSold;
 
-            // Add image to item
-            return fetch(`https://pixabay.com/api/?key=${PIXABAY_API_KEY}&orientation=horizontal&editors_choice=true&per_page=3&q=${item.product_name.split(' ')[item.product_name.split(' ').length - 1]}`)
-            .then(response => response.json())
-            .then(result => {
-                if (result.hits.length <= 0) {
-                    // Put a default image
-                }
-                
-                item.thumbnailImageURL = result.hits[0].webformatURL;
-                item.largeImageURL1 = result.hits[0].largeImageURL;
-                item.largeImageURL2 = result.hits[1].largeImageURL;
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open("GET", `https://pixabay.com/api/?key=${PIXABAY_API_KEY}&orientation=horizontal&editors_choice=true&per_page=3&q=${item.product_name.split(' ')[item.product_name.split(' ').length - 1]}`, false ); // false for synchronous request
+            xmlHttp.send();
+            let result = JSON.parse(xmlHttp.responseText);
 
-                items.push(item);
-            });
+            if (result.hits.length <= 0) {
+                // Put a default image
+            }
+            
+            item.thumbnailImageURL = result.hits[0].webformatURL;
+            item.largeImageURL1 = result.hits[0].largeImageURL;
+            item.largeImageURL2 = result.hits[1].largeImageURL;
+
+            items.push(item);
         });
 
 
