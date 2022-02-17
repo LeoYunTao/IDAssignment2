@@ -22,6 +22,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
 
     console.log(items);
     console.log(user);
+    console.log(sessionStorage.getItem("cart"));
 
     $("body").append(`<div
     class="modal fade"
@@ -31,7 +32,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     aria-hidden="true"
     >
     <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content text-center">
+    <div class="modal-content text-center rounded-5">
         <div class="modal-header">
         <h4 class="modal-title" id="exampleModalLabel"><i class="bi bi-person-circle"></i> User Profile</h4>
         <button
@@ -88,7 +89,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     tabindex="-1"
     >
     <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content rounded-5">
         <div class="modal-header">
         <h4 class="modal-title" id="exampleModalToggleLabel2">
             <i class="bi bi-credit-card-2-front-fill"></i> Credit Card Details
@@ -100,8 +101,8 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             aria-label="Close"
         ></button>
         </div>
-        <div class="modal-body border border-3 rounded-5">
-        <h1 class="navbar-brand col-5 fs-3 fw-bolder mt-3">COMMERCIUM Member</h1>
+        <div class="modal-body rounded-5">
+        <h1 class="navbar-brand col-5 fs-3 fw-bolder mt-0">COMMERCIUM Member</h1>
         <h1 class="mt-0 ms-3"><i class="bi bi-columns"></i></h1>
         <h3 class="mb-0 fw">${user.credit_card.cc_number}</h3>
         <h4 class="fw-lighter fs-6 m-0 mb-0">VALID-THRU:<br>${user.credit_card.expiration_date}</h4>
@@ -137,9 +138,9 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     tabindex="-1"
     >
     <div class="modal-dialog">
-    <div class="modal-content">
+    <div class="modal-content rounded-5">
         <div class="modal-header">
-        <h4 class="modal-title" id="exampleModalToggleLabel2">Items</h4>
+        <h4 class="modal-title" id="exampleModalToggleLabel2">Shopping List</h4>
         <button
             type="button"
             class="btn-close"
@@ -186,7 +187,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <section class="d-flex align-items-center ms-5">
+        <section id="timeSection" class="d-flex align-items-center ms-5">
         <lottie-player
             src="https://assets1.lottiefiles.com/packages/lf20_2Lm1d0.json"
             background="transparent"
@@ -219,21 +220,15 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     </div>
     </div>
     </header>`);
-
+    
+    
     user.taskList.forEach(product => {
-        $("#itemList").append(`<div class="border border-3 rounded my-3"><p><i class="bi bi-exclamation-square-fill"></i> Product - ${items[product.itemIndex].product_name}</p> <p><i class="bi bi-123"></i> Quantity - ${product.quantity}</p></div>`);
+        let item = 
+        $("#itemList").append(`<div class="border border-3 rounded my-1 p-3"><p><i class="bi bi-exclamation-circle"></i> ${findItem(items, product.uid).product_name}</p> 
+        <p class="mb-0"><i class="bi bi-123"></i> Quantity - ${product.quantity}</p> <p class="mb-0"><i class="bi bi-123"></i> 
+        Categories - ${product.department}<div>`);
     });
 
-}
-
-function restartGame() {
-    let isConfirm = confirm("Are you sure you want to restart the game?");
-    if (!isConfirm) {
-        return;
-    }
-    
-    sessionStorage.clear();
-    startGame();
 }
 
 function generateAndStoreUser() {
@@ -256,22 +251,26 @@ function generateAndStoreUser() {
         user.credit_card.expiration_date = expirationDate.getFullYear() + "-" + (expirationDate.getMonth()+1);
 
         user.taskList = [];
+
+        let items = JSON.parse(sessionStorage.getItem("items"));
         
-        let itemsCount = parseInt(Math.random() * (ITEMS_COUNT * 0.1));
+        let itemsCount = parseInt(( Math.random() * (ITEMS_COUNT * 0.05) ) + 1);
         for (let i = 0; i < itemsCount; i++) {
             user.taskList.push({
-                itemIndex: parseInt(Math.random() * ITEMS_COUNT),
+                uid: items[parseInt(Math.random() * ITEMS_COUNT)].uid,
                 quantity: parseInt( (Math.random() * 9) + 1 )
             });
         }
 
         sessionStorage.setItem("user", JSON.stringify(user));
-    })
+        
+    }).catch(error => {
+        console.log(error);
+    });
 }
 
 if (window.location.pathname == "/catalogPage.html" || window.location.pathname == "/searchPage.html") {
     let url = new URL(window.location.href);
-
 
     let categorySearched = null;
     if (url.searchParams.get("category") != null) {
@@ -288,20 +287,197 @@ if (window.location.pathname == "/catalogPage.html" || window.location.pathname 
         {
             $("#category").append(`<button class="btn btn-outline-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
         }
-        $("#filter-category .dropdown-menu").append(`<li><a class="dropdown-item" href="searchPage.html?category=${category}">${category}</a></li>`);
+        $("#filter-category .dropdown-menu").append(`<li><a class="btn dropdown-item" href="searchPage.html?category=${category}">${category}</a></li>`);
     });
 
     let items = JSON.parse(sessionStorage.getItem('items'));
 
-    const numberOfDisplayedItems = 8;
     let currentItem = 0;
-    for (let i = currentItem; i < currentItem + numberOfDisplayedItems; i++) {
-        const item = items[i];
+    let filteredItems = items;
+
+    if(window.location.pathname == "/catalogPage.html") {
+        let popularItems = [...items].sort((a, b) => b.itemsSold - a.itemsSold).slice(0, 12);
+        displayItems(popularItems, 0, element="#popularItems", 12);
+
+        currentItem = displayItems(filteredItems, 0);
+    }
+    else if (window.location.pathname == "/searchPage.html") {
+        let search = ""; 
+        if (url.searchParams.get("search") != null)
+        {
+            search = url.searchParams.get("search");
+        }
         
-        $("#explore").append(`
+        let categories = [];
+        if (url.searchParams.get("category") != null) {
+            categories = url.searchParams.get("category").split(",");
+        }
+
+        $("#productName").text(search);
+
+        filteredItems = items.filter(item => {
+            if (categories.length <= 0 || categories[0] == "") {
+                return item.product_name.toLowerCase().includes(search.toLowerCase());
+            }
+            else {
+                // filters it if either one of the categories is included in the item
+                return item.product_name.toLowerCase().includes(search.toLowerCase()) && item.department.split(" & ").some(category => categories.includes(category));
+            }
+        });
+
+        console.log(filteredItems);
+
+        currentItem = displayItems(filteredItems, 0);
+    }
+
+    let cart = JSON.parse(sessionStorage.getItem('cart'));
+    $("#cartItems").text(cart.length);
+
+    $(window).scroll(() => { 
+        // check if div is scrolled to the bottom
+        if(($("#explore").position().top + $("#explore").height()) - (window.scrollY + window.innerHeight - 100) < 1) {
+            currentItem = displayItems(filteredItems, currentItem);
+        }
+    });
+
+    //   <span class="p"><i class="bi bi-bag-fill"></i> ${item.itemsSold}K</span>
+
+    $("#searchArea").submit(event => { 
+        event.preventDefault();
+
+        let formData = new FormData(event.target);
+        let search = formData.get("search");
+
+        console.log(search);
+        const param = new URLSearchParams(window.location.search);
+        param.set("search", search);
+
+        window.location.href = `searchPage.html?${param}`;
+        
+    });
+}
+
+if (window.location.pathname == "/productDesc.html") {
+    const urlParams = new URLSearchParams(window.location.search);
+    const uid = urlParams.get("productId");
+
+    const item = findItem(JSON.parse(sessionStorage.getItem('items')), uid);
+
+    $("#productName").text(item.product_name);
+    $("#productCategory").text(item.category);
+    $("#productSales").text(item.itemsSold + "K");
+    $("#productPrice").text("S$" + item.price);
+
+    for (let i = 0; i < item.largeImageURLs.length; i++) {
+        const imageURL = item.largeImageURLs[i];
+
+        $("#carouselExampleDark .carousel-indicators").append(`
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" ${i == 0 ? "class='active' aria-current='true'" : ""} aria-label="Slide ${i+1}"></button>
+        `)
+        $("#carouselExampleDark .carousel-inner").append(`
+        <div class="carousel-item ${i == 0 ? "active" : ""}" data-bs-interval="3000">
+            <img src="${imageURL}" class="d-block img-fluid w-100" alt="${item.product_name}">
+        </div>
+        `);
+    }
+
+    $("#addToCart").submit(event => { 
+        event.preventDefault();
+        
+        const data = new FormData($("#addToCart").get(0));
+        const quantity = data.get("quantity");
+        
+        addToCart(uid, quantity);
+    });
+}
+
+if (window.location.pathname == "/checkout.html") {
+
+    const cart = JSON.parse(sessionStorage.getItem('cart'));
+    const items = JSON.parse(sessionStorage.getItem('items'));
+    
+    let totalPrice = 0;
+
+    cart.forEach(item => {
+        const product = findItem(items, item.uid);
+        let subTotal = (item.quantity * product.price).toFixed(2);
+        $("#products").append(`
+        <li class="d-flex flex-wrap p-3">
+            <div id="addedFlex" class="d-flex col-12 justify-content-between">
+                <div id="addedFlex" class="d-flex">
+                    <img class="cartImg" src="${product.largeImageURLs}">
+                    <div id="itemDesc" class="ms-5 p-3">
+                    <h5>${product.product_name}</h5> 
+                    Price: S$${subTotal}
+                    <hr class="blackhr">
+                    <p>Quantity: </p>
+                    <input type="number" class="form-control form-control-lg" name="quantity" value="${item.quantity}" min="0" max="100">
+                </div>
+            </div>
+            <div id="removeBtn" class="p-3 mt-5">
+                <button class="btn" onclick="removeFromCart(${item.cartId})">
+                <i class="bi bi-x-lg"></i></button>
+            </div>
+        </li>
+        `);
+        subTotal = item.subTotal * item.quantity
+        totalPrice += subTotal;
+    });
+
+    $("#totalPrice").text("S$" + (Math.round(totalPrice * 100) / 100).toFixed(2));
+
+}
+
+function removeFromCart(cartId) {
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+
+    cart = cart.filter(item => item.cartId != cartId);
+
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+
+    location.reload();
+}
+
+function addToCart(uid, quantity) {
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+
+    let item = {
+        cartId: cart.length,
+        uid: uid,
+        quantity: quantity
+    };
+
+    cart.push(item);
+
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+
+    window.location.href = "catalogPage.html";
+}
+
+function findItem(items, uid) {
+    for (let i = 0; i < items.length; i++) {
+        const item = items[i];
+        if (item.uid == uid) {
+            return item;
+        }
+    }
+
+    throw new Error("Item not found");
+}
+
+function displayItems(items, startingPosition, element="#explore", numberOfItems=8) {
+
+    for (let i = startingPosition; i < startingPosition + numberOfItems; i++) {
+        
+        const item = items[i];
+        if (item == null) {
+            break;
+        }
+
+        $(element).append(`
         <div class="card-full">
-          <a href="productDesc.html?productId=${i}" class="card rounded-4">
-            <div class="card-background" style="background-image: url('${item.thumbnailImageURL}');" class="card-img-top rounded-4"></div>
+          <a href="productDesc.html?productId=${item.uid}" class="card rounded-4">
+            <div class="card-background" style="background-image: url('${item.largeImageURLs}');" class="card-img-top rounded-4"></div>
             <div class="card-body">
               <span class="p me-2"
                 ><i class="bi bi-tags-fill"></i> ${item.department}</span
@@ -312,41 +488,19 @@ if (window.location.pathname == "/catalogPage.html" || window.location.pathname 
               <h4>S$${(Math.round(item.price * 100) / 100).toFixed(2)}</h4>
             </div>
           </a>
-          <button class="btn btn-primary">ADD TO CART</button>
+          <button class="btn btn-primary" onclick="addToCart('${item.uid}', 1)">ADD TO CART</button>
         </div>
         `);
     }
 
-    // items.forEach(item => {
-    //     $("#explore").append(`
-    //     <div class="card-full">
-    //       <a href="productDesc.html?productId=${item.id}" class="card rounded-4">
-    //         <div class="card-background" style="background-image: url('${item.thumbnailImageURL}');" class="card-img-top rounded-4"></div>
-    //         <div class="card-body">
-    //           <span class="p me-2"
-    //             ><i class="bi bi-tags-fill"></i> ${item.department}</span
-    //           > 
-    //           <h4 class="card-title mt-1">${item.product_name}</h4>
-    //         </div>
-    //         <div class="card-footer bg-transparent border-0">
-    //           <h4>S$${(Math.round(item.price * 100) / 100).toFixed(2)}</h4>
-    //         </div>
-    //       </a>
-    //       <button class="btn btn-primary">ADD TO CART</button>
-    //     </div>
-    //     `);
-    // });
-
-    //TODO Loads the items 10 at at a time
-
-    //   <span class="p"><i class="bi bi-bag-fill"></i> ${item.itemsSold}K</span>
+    return startingPosition + numberOfItems;
 }
 
 function filterCategory(category) {
 
     let url = new URL(window.location.href);
 
-    if (url.searchParams.get("category") == null) {
+    if (url.searchParams.get("category") == null || url.searchParams.get("category") == "") {
         url.searchParams.set("category", category);
 
     } else {
@@ -371,10 +525,11 @@ function generateAndStoreItems() {
             // Delete keys that +are not needed
             delete item.price_string;
             delete item.material;
-            delete item.uid;
+            delete item.id;
             delete item.color;
 
             // Items sold in thousands
+            // TODO: generate the items sold using normal distribution
             let itemsSold = parseInt(Math.random() * 100);
             item.itemsSold = itemsSold;
 
@@ -388,8 +543,12 @@ function generateAndStoreItems() {
             }
             
             item.thumbnailImageURL = result.hits[0].webformatURL;
-            item.largeImageURL1 = result.hits[0].largeImageURL;
-            item.largeImageURL2 = result.hits[1].largeImageURL;
+
+            item.largeImageURLs = [];
+
+            for (let i = 0; i < result.hits.length; i++) {
+                item.largeImageURLs.push(result.hits[i].largeImageURL);
+            }
 
             items.push(item);
         });
@@ -420,10 +579,21 @@ function startGame() {
         generateAndStoreUser().finally( () => {
             let categories = getItemsCategory();
             sessionStorage.setItem("categories", JSON.stringify(categories));
+            sessionStorage.setItem("cart", JSON.stringify([]));
             window.location.href = "/catalogPage.html";
         });
     });
 
+}
+
+function restartGame() {
+    let isConfirm = confirm("Are you sure you want to restart the game?");
+    if (!isConfirm) {
+        return;
+    }
+    
+    sessionStorage.clear();
+    startGame();
 }
 
 function endGame() {
