@@ -6,7 +6,7 @@ const PIXABAY_API_KEY = "9602505-f76ea265b3e81cda17324512f";
 const ITEMS_COUNT = 100;
 
 console.log(window.location.pathname);
-if (window.location.pathname != "/index.html" && window.location.pathname != "/")
+if (window.location.pathname != "/index.html" && window.location.pathname != "/" && window.location.pathname != "/leaderboard.html" && window.location.pathname != "/rewards.html")
 {
 
     if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') == "[]" || sessionStorage.getItem('items') == "") {
@@ -358,7 +358,12 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             const quantity = data.get("quantity");
             
             addToCart(uid, quantity);
+
+            if (window.location.pathname == "/productDesc.html") {
+                window.location.href = "/catalogPage.html";
+            }
         
+            $('.toast').toast('show');
         });
     }
     
@@ -569,6 +574,7 @@ function addToCart(uid, quantity) {
     sessionStorage.setItem("cart", JSON.stringify(cart));
 
     updateCartItemNumber();
+
 
 }
 

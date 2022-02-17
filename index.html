@@ -20,9 +20,21 @@
 </head>
 
 <body id="index-page">
+
+    <div class="modal" id="loadingModal" tabindex="-1" aria-labelledby="loadingModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <lottie-player src="https://assets6.lottiefiles.com/datafiles/40aX5db74VvGPWw/data.json" background="transparent" speed="1" loop autoplay></lottie-player>
+              <p class="text-center">Loading Game... Please Wait</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     <header class="fixed-top">
         <div class="navbar navbar-expand-md navbar-light bg-none container">
-            <a class="navbar-brand" href="index.html">commercium</a>
+            <a class="navbar-brand" href="index.html">fastgame</a>
             <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -35,7 +47,7 @@
                     <a class="nav-link mx-2" href="leaderboard.html">Leaderboard</a>
                     <a class="nav-link mx-2" href="rewards.html">Rewards</a>
                 </div>
-                <button id="navPlayBtn" class="nav-link btn btn-primary ms-5 text-nowrap btn-sm" onclick="startGame();">Play Now</button>
+                <button id="navPlayBtn" class="nav-link btn btn-primary ms-5 text-nowrap btn-sm" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();">Play Now</button>
             </div>
         </div>            
     </header>
@@ -43,13 +55,13 @@
     <main>
         <section class="container">
             <div class="row gx-0">
-                <section class="col-12 col-md-7 mt-auto mb-1">
+                <section class="col-12 col-md-7 mt-xl-auto mt-8 mb-1">
                     <div>
                         <hr width="75px">
                         <h1 class="me-5"><span class="main-color">Speedrun</span> Your Way To Success!</h1>
                         <p class="mt-4"><i class="bi bi-trophy"></i> Win rewards by racing against the clock and compete with other players!</p>
                         <div class="mt-6">
-                            <button class="btn btn-primary me-4" href="catalogPage.html" onclick="startGame();"><i class="bi bi-play"></i> Play Now</button>
+                            <button class="btn btn-primary me-4" href="catalogPage.html" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();"><i class="bi bi-play"></i> Play Now</button>
                             <a class="btn btn-outline-primary" href="#race-against-time"><i class="bi bi-info-lg"></i> Learn More</a>
                         </div>
                     </div>
@@ -101,7 +113,7 @@
             <p class="text-center">and win attractive prizes</p>
             
             <div class="text-center mt-6 mb-7">
-                <button id="bannerBtn" class="btn btn-light" onclick="startGame();">Play Now</button>
+                <button id="bannerBtn" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();">Play Now</button>
             </div>
         </section>
         <br>

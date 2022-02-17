@@ -15,6 +15,18 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
 </head>
 <body>
+    
+    <div class="modal" id="loadingModal" tabindex="-1" aria-labelledby="loadingModal" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-body">
+              <lottie-player src="https://assets6.lottiefiles.com/datafiles/40aX5db74VvGPWw/data.json" background="transparent" speed="1" loop autoplay></lottie-player>
+              <p class="text-center">Loading Game... Please Wait</p>
+            </div>
+          </div>
+        </div>
+    </div>
+
     <header class="fixed-top">
         <div class="navbar navbar-expand-md navbar-light bg-none container">
             <a class="navbar-brand" href="index.html">fastgame</a>
@@ -30,7 +42,7 @@
                     <a class="nav-link mx-2 active" href="leaderboard.html">Leaderboard</a>
                     <a class="nav-link mx-2" href="rewards.html">Rewards</a>
                 </div>
-                <a id="navPlayBtn" class="nav-link btn btn-primary ms-5 text-nowrap btn-sm" href="catalogPage.html">Play Now</a>
+                <button id="navPlayBtn" class="nav-link btn btn-primary ms-5 text-nowrap btn-sm" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();">Play Now</button>
             </div>
         </div>            
     </header>
@@ -78,8 +90,10 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
     <script src="js/leaderboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 </html>
