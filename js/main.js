@@ -226,7 +226,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     
     user.taskList.forEach(product => {
         let item = findItem(items, product.uid);
-        $("#itemList").append(`<div class="border border-3 rounded my-1 p-3"><p><i class="bi bi-exclamation-circle"></i> ${item.product_name}</p> 
+        $("#itemList").append(`<div class="border border-3 rounded mb-3 p-3"><p><i class="bi bi-exclamation-circle"></i> ${item.product_name}</p> 
         <p class="mb-0"><i class="bi bi-123"></i> Quantity - ${product.quantity}</p> <p class="mb-0"><i class="bi bi-123"></i> 
         Categories - ${item.department}<div>`);
     });
@@ -301,8 +301,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             currentItem = displayItems(filteredItems, 0);
         }
     
-        let cart = JSON.parse(sessionStorage.getItem('cart'));
-        $("#cartItems").text(cart.length);
+        updateCartItemNumber();
     
         $(window).scroll(() => { 
             // check if div is scrolled to the bottom
@@ -359,6 +358,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             const quantity = data.get("quantity");
             
             addToCart(uid, quantity);
+        
         });
     }
     
@@ -415,6 +415,11 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             endGameModal.show();
         });
     }
+}
+
+function updateCartItemNumber() {
+    let cart = JSON.parse(sessionStorage.getItem('cart'));
+    $("#cartItems").text(cart.length);
 }
 
 function millisecondsToMinutesAndSeconds(time) {
@@ -563,7 +568,8 @@ function addToCart(uid, quantity) {
 
     sessionStorage.setItem("cart", JSON.stringify(cart));
 
-    window.location.href = "catalogPage.html";
+    updateCartItemNumber();
+
 }
 
 function findItem(items, uid) {
