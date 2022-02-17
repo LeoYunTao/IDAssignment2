@@ -175,7 +175,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
 
     <header class="fixed-top">
     <div class="navbar navbar-expand-md navbar-light container">
-    <a class="navbar-brand col-5" href="catalogPage.html">commercium</a>
+    <a class="navbar-brand col-5" href="catalogPage.html">fastgame</a>
     <button
         class="navbar-toggler ms-auto"
         type="button"
@@ -189,7 +189,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <section id="timeSection" class="d-flex align-items-center ms-5">
+        <section id="timeSection" class="d-flex align-items-center ms-0 ms-xl-5">
         <lottie-player
             src="https://assets1.lottiefiles.com/packages/lf20_2Lm1d0.json"
             background="transparent"
@@ -225,18 +225,202 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     
     
     user.taskList.forEach(product => {
-        let item = 
-        $("#itemList").append(`<div class="border border-3 rounded my-1 p-3"><p><i class="bi bi-exclamation-circle"></i> ${findItem(items, product.uid).product_name}</p> 
+        let item = findItem(items, product.uid);
+        $("#itemList").append(`<div class="border border-3 rounded my-1 p-3"><p><i class="bi bi-exclamation-circle"></i> ${item.product_name}</p> 
         <p class="mb-0"><i class="bi bi-123"></i> Quantity - ${product.quantity}</p> <p class="mb-0"><i class="bi bi-123"></i> 
-        Categories - ${product.department}<div>`);
+        Categories - ${item.department}<div>`);
     });
 
-    setInterval(() => {
+    let updateTimer = setInterval(() => {
         let time = Date.now() - parseInt(sessionStorage.getItem("startTime"));
-        let minutes = Math.floor(time / 60000);
-        let seconds = (Math.floor(time - minutes * 60000) / 1000).toFixed(2);
-        $("#timer").text(`${minutes.toString().padStart(2, 0)}:${seconds.toString().padStart(5, 0)}`);
+        $("#timer").text(millisecondsToMinutesAndSeconds(time));
+
+        // $("#paymentDetails").submit(()=> {
+        //     clearInterval(updateTimer);
+        // });
     }, 10);
+
+    if (window.location.pathname == "/catalogPage.html" || window.location.pathname == "/searchPage.html") {
+        let url = new URL(window.location.href);
+    
+        let categorySearched = null;
+        if (url.searchParams.get("category") != null) {
+            categorySearched = url.searchParams.get("category").split(",");
+        }
+    
+        let categories = JSON.parse(sessionStorage.getItem('categories'));
+        categories.forEach(category => {
+            if (categorySearched != null && categorySearched.includes(category))
+            {
+                $("#category").append(`<button class="btn btn-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
+            }
+            else
+            {
+                $("#category").append(`<button class="btn btn-outline-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
+            }
+            $("#filter-category .dropdown-menu").append(`<li><a class="btn dropdown-item" href="searchPage.html?category=${category}">${category}</a></li>`);
+        });
+    
+        let items = JSON.parse(sessionStorage.getItem('items'));
+    
+        let currentItem = 0;
+        let filteredItems = items;
+    
+        if(window.location.pathname == "/catalogPage.html") {
+            let popular = [...items].sort((a, b) => b.itemsSold - a.itemsSold).slice(0, 12);
+            displayItems(popular, 0, element="#popular", 12);
+    
+            currentItem = displayItems(filteredItems, 0);
+        }
+        else if (window.location.pathname == "/searchPage.html") {
+            let search = ""; 
+            if (url.searchParams.get("search") != null)
+            {
+                search = url.searchParams.get("search");
+            }
+            
+            let categories = [];
+            if (url.searchParams.get("category") != null) {
+                categories = url.searchParams.get("category").split(",");
+            }
+    
+            $("#productName").text(search);
+    
+            filteredItems = items.filter(item => {
+                if (categories.length <= 0 || categories[0] == "") {
+                    return item.product_name.toLowerCase().includes(search.toLowerCase());
+                }
+                else {
+                    // filters it if either one of the categories is included in the item
+                    return item.product_name.toLowerCase().includes(search.toLowerCase()) && item.department.split(" & ").some(category => categories.includes(category));
+                }
+            });
+    
+            console.log(filteredItems);
+    
+            currentItem = displayItems(filteredItems, 0);
+        }
+    
+        let cart = JSON.parse(sessionStorage.getItem('cart'));
+        $("#cartItems").text(cart.length);
+    
+        $(window).scroll(() => { 
+            // check if div is scrolled to the bottom
+            if(($("#explore").position().top + $("#explore").height()) - (window.scrollY + window.innerHeight - 100) < 1) {
+                currentItem = displayItems(filteredItems, currentItem);
+            }
+        });
+    
+        //   <span class="p"><i class="bi bi-bag-fill"></i> ${item.itemsSold}K</span>
+    
+        $("#searchArea").submit(event => { 
+            event.preventDefault();
+    
+            let formData = new FormData(event.target);
+            let search = formData.get("search");
+    
+            console.log(search);
+            const param = new URLSearchParams(window.location.search);
+            param.set("search", search);
+    
+            window.location.href = `searchPage.html?${param}`;
+            
+        });
+    }
+    
+    if (window.location.pathname == "/productDesc.html") {
+        const urlParams = new URLSearchParams(window.location.search);
+        const uid = urlParams.get("productId");
+    
+        const item = findItem(JSON.parse(sessionStorage.getItem('items')), uid);
+    
+        $("#productName").text(item.product_name);
+        $("#productCategory").text(item.category);
+        $("#productSales").text(item.itemsSold + "K");
+        $("#productPrice").text("S$" + item.price);
+    
+        for (let i = 0; i < item.largeImageURLs.length; i++) {
+            const imageURL = item.largeImageURLs[i];
+    
+            $("#carouselExampleDark .carousel-indicators").append(`
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" ${i == 0 ? "class='active' aria-current='true'" : ""} aria-label="Slide ${i+1}"></button>
+            `)
+            $("#carouselExampleDark .carousel-inner").append(`
+            <div class="carousel-item ${i == 0 ? "active" : ""}" data-bs-interval="3000">
+                <img src="${imageURL}" class="d-block img-fluid w-100" alt="${item.product_name}">
+            </div>
+            `);
+        }
+    
+        $("#addToCart").submit(event => { 
+            event.preventDefault();
+            
+            const data = new FormData($("#addToCart").get(0));
+            const quantity = data.get("quantity");
+            
+            addToCart(uid, quantity);
+        });
+    }
+    
+    if (window.location.pathname == "/checkout.html") {
+        
+        updateCart();
+    
+        $("#paymentDetails").submit(event => {
+            event.preventDefault();
+
+            let user = JSON.parse(sessionStorage.getItem("user"));
+    
+            const formData = new FormData(event.target);
+    
+            const TOTAL = 12;
+    
+            let first_name = formData.get("first_name").toLowerCase() == user.first_name.toLowerCase();
+            let last_name = formData.get("last_name").toLowerCase() == user.last_name.toLowerCase();
+            let email = formData.get("email").toLowerCase() == user.email.toLowerCase();
+            let phone_number = formData.get("phone_number") == user.phone_number;
+            let street_address = formData.get("street_address").toLowerCase() == user.address.street_address.toLowerCase();
+            let city = formData.get("city").toLowerCase() == user.address.city.toLowerCase();
+            let state = formData.get("state").toLowerCase() == user.address.state.toLowerCase();
+            let zip_code = formData.get("zip_code").toLowerCase() == user.address.zip_code.toLowerCase();
+            let credit_card_name = formData.get("credit_card_name").toLowerCase() == user.credit_card.credit_card_name.toLowerCase();
+            let cc_number = formData.get("cc_number") == user.credit_card.cc_number;
+            let CVV = formData.get("CVV") == user.credit_card.CVV;
+            let expiration_date = formData.get("expiration_date") == user.credit_card.expiration_date;
+    
+            let sum = first_name + last_name + email + phone_number + street_address + city + state + zip_code + credit_card_name + cc_number + CVV + expiration_date;
+            
+            let requiredItem = user.taskList;
+            let purchasedItem = JSON.parse(sessionStorage.getItem('cart'));
+    
+            let itemsDidntBuy = findCartDiff([...requiredItem], [...purchasedItem]);
+            let itemsBuyForNoReason = findCartDiff([...purchasedItem], [...requiredItem]);
+    
+            const cartAccuracy = (requiredItem.length - (itemsDidntBuy.length + itemsBuyForNoReason.length)) / requiredItem.length;
+            
+            const totalAccuracy = (sum/TOTAL) + cartAccuracy;
+    
+            const timeTaken = Date.now() - parseInt(sessionStorage.getItem("startTime"));
+    
+            const score = totalAccuracy * (1/ timeTaken) * 10000;
+            console.log(totalAccuracy);
+    
+            // display modal and show the speed runner result
+            const endGameModal = new bootstrap.Modal($('#endGameModal').get(0));
+    
+            $("#time").text(millisecondsToMinutesAndSeconds(timeTaken));
+            $("#score").text(score);
+            $("#accuracy").text(totalAccuracy + "%");
+    
+            endGameModal.show();
+        });
+    }
+}
+
+function millisecondsToMinutesAndSeconds(time) {
+    let minutes = Math.floor(time / 60000);
+    let seconds = (Math.floor(time - minutes * 60000) / 1000).toFixed(2);
+    return `${minutes.toString().padStart(2, 0)}:${seconds.toString().padStart(5, 0)}`;
 }
 
 function generateAndStoreUser() {
@@ -277,138 +461,45 @@ function generateAndStoreUser() {
     });
 }
 
-if (window.location.pathname == "/catalogPage.html" || window.location.pathname == "/searchPage.html") {
-    let url = new URL(window.location.href);
-
-    let categorySearched = null;
-    if (url.searchParams.get("category") != null) {
-        categorySearched = url.searchParams.get("category").split(",");
-    }
-
-    let categories = JSON.parse(sessionStorage.getItem('categories'));
-    categories.forEach(category => {
-        if (categorySearched != null && categorySearched.includes(category))
-        {
-            $("#category").append(`<button class="btn btn-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
-        }
-        else
-        {
-            $("#category").append(`<button class="btn btn-outline-primary btn-sm me-3 mb-3 fs-6 rounded-pill" onclick="filterCategory('${category}')">${category}</button>`);
-        }
-        $("#filter-category .dropdown-menu").append(`<li><a class="btn dropdown-item" href="searchPage.html?category=${category}">${category}</a></li>`);
-    });
-
-    let items = JSON.parse(sessionStorage.getItem('items'));
-
-    let currentItem = 0;
-    let filteredItems = items;
-
-    if(window.location.pathname == "/catalogPage.html") {
-        let popularItems = [...items].sort((a, b) => b.itemsSold - a.itemsSold).slice(0, 12);
-        displayItems(popularItems, 0, element="#popularItems", 12);
-
-        currentItem = displayItems(filteredItems, 0);
-    }
-    else if (window.location.pathname == "/searchPage.html") {
-        let search = ""; 
-        if (url.searchParams.get("search") != null)
-        {
-            search = url.searchParams.get("search");
-        }
+// find the difference between one cart and another
+function findCartDiff(arr1, arr2) {
+    const diff = [];
+    
+    for (let i = 0; i < arr1.length; i++) {
+        const item = arr1[i];
         
-        let categories = [];
-        if (url.searchParams.get("category") != null) {
-            categories = url.searchParams.get("category").split(",");
+        let isSame = false;
+        for (let j = 0; j < arr2.length; j++) {
+            const cartItem = arr2[j];
+
+            if (item.uid == cartItem.uid && item.quantity == cartItem.quantity) {
+                arr1.splice(i, 1);
+                arr2.splice(j, 1);
+                i--;
+                j--;
+                isSame = true;
+                break;
+            }
         }
 
-        $("#productName").text(search);
-
-        filteredItems = items.filter(item => {
-            if (categories.length <= 0 || categories[0] == "") {
-                return item.product_name.toLowerCase().includes(search.toLowerCase());
-            }
-            else {
-                // filters it if either one of the categories is included in the item
-                return item.product_name.toLowerCase().includes(search.toLowerCase()) && item.department.split(" & ").some(category => categories.includes(category));
-            }
-        });
-
-        console.log(filteredItems);
-
-        currentItem = displayItems(filteredItems, 0);
+        if (!isSame) {
+            diff.push(item);
+        }
     }
 
-    let cart = JSON.parse(sessionStorage.getItem('cart'));
-    $("#cartItems").text(cart.length);
-
-    $(window).scroll(() => { 
-        // check if div is scrolled to the bottom
-        if(($("#explore").position().top + $("#explore").height()) - (window.scrollY + window.innerHeight - 100) < 1) {
-            currentItem = displayItems(filteredItems, currentItem);
-        }
-    });
-
-    //   <span class="p"><i class="bi bi-bag-fill"></i> ${item.itemsSold}K</span>
-
-    $("#searchArea").submit(event => { 
-        event.preventDefault();
-
-        let formData = new FormData(event.target);
-        let search = formData.get("search");
-
-        console.log(search);
-        const param = new URLSearchParams(window.location.search);
-        param.set("search", search);
-
-        window.location.href = `searchPage.html?${param}`;
-        
-    });
+    return diff;
 }
 
-if (window.location.pathname == "/productDesc.html") {
-    const urlParams = new URLSearchParams(window.location.search);
-    const uid = urlParams.get("productId");
-
-    const item = findItem(JSON.parse(sessionStorage.getItem('items')), uid);
-
-    $("#productName").text(item.product_name);
-    $("#productCategory").text(item.category);
-    $("#productSales").text(item.itemsSold + "K");
-    $("#productPrice").text("S$" + item.price);
-
-    for (let i = 0; i < item.largeImageURLs.length; i++) {
-        const imageURL = item.largeImageURLs[i];
-
-        $("#carouselExampleDark .carousel-indicators").append(`
-        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="${i}" ${i == 0 ? "class='active' aria-current='true'" : ""} aria-label="Slide ${i+1}"></button>
-        `)
-        $("#carouselExampleDark .carousel-inner").append(`
-        <div class="carousel-item ${i == 0 ? "active" : ""}" data-bs-interval="3000">
-            <img src="${imageURL}" class="d-block img-fluid w-100" alt="${item.product_name}">
-        </div>
-        `);
-    }
-
-    $("#addToCart").submit(event => { 
-        event.preventDefault();
-        
-        const data = new FormData($("#addToCart").get(0));
-        const quantity = data.get("quantity");
-        
-        addToCart(uid, quantity);
-    });
-}
-
-if (window.location.pathname == "/checkout.html") {
-
+function updateCart() {
     const cart = JSON.parse(sessionStorage.getItem('cart'));
     const items = JSON.parse(sessionStorage.getItem('items'));
-    
     let totalPrice = 0;
+
+    $("#products").empty();
 
     cart.forEach(item => {
         const product = findItem(items, item.uid);
-        let subTotal = (item.quantity * product.price).toFixed(2);
+        let subTotal = item.quantity * product.price;
         $("#products").append(`
         <li class="d-flex flex-wrap p-3">
             <div id="addedFlex" class="d-flex col-12 justify-content-between">
@@ -416,10 +507,10 @@ if (window.location.pathname == "/checkout.html") {
                     <img class="cartImg" src="${product.largeImageURLs}">
                     <div id="itemDesc" class="ms-5 p-3">
                     <h5>${product.product_name}</h5> 
-                    Price: S$${subTotal}
+                    Price: S$${subTotal.toFixed(2)}
                     <hr class="blackhr">
                     <p>Quantity: </p>
-                    <input type="number" class="form-control form-control-lg" name="quantity" value="${item.quantity}" min="0" max="100">
+                    <input type="number" class="form-control form-control-lg" name="quantity" onchange="updateValue(${item.cartId}, this)" value="${item.quantity}" min="1" max="100">
                 </div>
             </div>
             <div id="removeBtn" class="p-3 mt-5">
@@ -428,12 +519,25 @@ if (window.location.pathname == "/checkout.html") {
             </div>
         </li>
         `);
-        subTotal = item.subTotal * item.quantity
         totalPrice += subTotal;
     });
 
     $("#totalPrice").text("S$" + (Math.round(totalPrice * 100) / 100).toFixed(2));
+}
 
+function updateValue(cartId, element) {
+    let cart = JSON.parse(sessionStorage.getItem("cart"));
+
+    cart.forEach(item => {
+        if (item.cartId == cartId) {
+            item.quantity = parseInt(element.value);
+        }
+    });
+
+    console.log(cart);
+    sessionStorage.setItem("cart", JSON.stringify(cart));
+
+    updateCart();
 }
 
 function removeFromCart(cartId) {
@@ -443,7 +547,7 @@ function removeFromCart(cartId) {
 
     sessionStorage.setItem("cart", JSON.stringify(cart));
 
-    location.reload();
+    updateCart();
 }
 
 function addToCart(uid, quantity) {

@@ -20,7 +20,7 @@
 <body id="checkoutPage">
 
     <section class="container mt-7">
-        <h1 style="color: red;">CHECKOUT</h1>
+        <h1 class="main-color">CHECKOUT</h1>
         <hr class="blackhr" style="padding: 5px;">   
     </section>
     <br>
@@ -67,44 +67,46 @@
         </ul>
     </section>
     
+    <form id="paymentDetails">
+
     <section class="container">
-        <h2 class="my-3" style="color: red;">Payment</h2>
+        <h2 class="my-3 main-color">Payment</h2>
         <hr class="blackhr">
         <h3 class="mb-4"><i class="bi bi-person-circle"></i> Personal Information</h3>
         <div id="checkOutForm" class="d-flex flex-wrap justify-content-evenly">
             <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" class="form-control" id="floatingInput" name="first_name" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-person-fill"></i> First Name</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" class="form-control" id="floatingInput" name="last_name" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-person-fill"></i> Last Name</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-envelope"></i> Email</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="tel" class="form-control" id="floatingInput" name="phone_number" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-telephone"></i> Phone Number</label>
             </div>
             <div id="furtherDivide" class="mb-3 col-5 d-flex justify-content-between">
                 <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="floatingInput" name="street_address" placeholder="name@example.com" required>
                     <label for="floatingInput"><i class="bi bi-house"></i> Address</label>
                 </div>
                 <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="floatingInput" name="city" placeholder="name@example.com" required>
                     <label for="floatingInput"><i class="bi bi-building"></i> City</label>
                 </div>
             </div>
             <div  id="furtherDivide" class="mb-3 col-5 d-flex flex-wrap justify-content-between">
                 <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="floatingInput" name="state" placeholder="name@example.com" required>
                     <label for="floatingInput"><i class="bi bi-bank"></i> State</label>
                 </div>
                 <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                    <input type="text" class="form-control" id="floatingInput" name="zip_code" placeholder="name@example.com" required>
                     <label for="floatingInput"><i class="bi bi-house-door"></i> Zip</label>
                 </div>
             </div>
@@ -118,19 +120,19 @@
         </div>
         <div class="d-flex flex-wrap justify-content-evenly">
             <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" class="form-control" id="floatingInput" name="credit_card_name" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-person-bounding-box"></i> Name on Card</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="text" class="form-control" id="floatingInput" name="cc_number" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-credit-card-2-front"></i> Credit Card Number</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
+                <input type="number" class="form-control" id="floatingInput" min="0" name="CVV" placeholder="name@example.com" required>
                 <label for="floatingInput"><i class="bi bi-credit-card-2-back"></i> CVV</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="month" class="form-control" id="floatingInput" placeholder="name@example.com" style="text-transform: uppercase;">
+                <input type="month" class="form-control" id="floatingInput" name="expiration_date" placeholder="name@example.com" required style="text-transform: uppercase;">
                 <label for="floatingInput"><i class="bi bi-calendar2-x" ></i> Expiry Date</label>
             </div>
         </div>
@@ -149,9 +151,47 @@
             <input class="px-2" type="submit" value="Enter">
         </div>
         <div class="checkOut d-flex d-inline">
-            <button id="checkOutEnd" class="btn btn-block btn-primary shadow" type="button">CHECKOUT!</button>
+            <input type="submit" id="checkOutEnd" class="btn btn-block btn-primary shadow" data-bs-target="#endGameModal" value="CHECKOUT!">
         </div>
     </section>
+    </form>
+
+    <div id="endGameModal" class="modal fade" tabindex="-1">
+        <form class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2 class="modal-title mt-3 mb-0">Game Over!</h2>
+            </div>
+            <div class="modal-body">
+                <h3 class="mb-3"><i class="bi bi-emoji-smile"></i> Congratulations for completing the game!</h3>
+                <hr>
+                <h2>Post-game result:</h2>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="fs-5" scope="col"><i class="bi bi-person-badge-fill"></i> Name</th>
+                            <th class="fs-5" scope="col"><i class="bi bi-stopwatch-fill"></i> Time-taken</th>
+                            <th class="fs-5" scope="col"><i class="bi bi-award"></i> Score</th>
+                            <th class="fs-5" scope="col"><i class="bi bi-pie-chart-fill"></i> Accuracy</th>
+                        </tr>
+                    </thead>
+                    <tr>
+                        <td class="col-4"><input type="text" required minlength="3" class="form-control border-0" id="exampleInput name" aria-describedby="emailHelp" placeholder="Enter Your Name Here"></td>
+                        <td class="fs-5" id="time">99:99:99</td>
+                        <td class="fs-5" id="score">99999999</td>
+                        <td class="fs-5" id="accuracy">999%</td>
+                    </tr>
+                </table>
+                <hr class="blackhr">
+            </div>
+            <div class="modal-footer d-flex mb-3 col-12 justify-content-between">
+                <p class="fs-5 ms-1"><i class="bi bi-twitch"></i> Thank you for playing!</p>
+                <button id="finish" type="submit" class="btn btn-primary" href="catalogPage.html" onclick=""><i class="bi bi-trophy-fill"></i> FINISH</button>
+            </div>
+          </div>
+        </form>
+    </div>
+    
     <footer class="container">
         <p>&copy; Yun Tao, Ming Feng</p>
     </footer>

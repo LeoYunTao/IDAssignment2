@@ -277,10 +277,6 @@ footer {
     z-index: 0;
 }
 
-#spcobtn {
-    margin-left: 54.7%;
-}
-
 .blackhr {
     border-color:black;
 }
@@ -292,6 +288,22 @@ footer {
 .cartImg {
     width: 27%;
     height: auto;
+}
+
+#bannerBtn:hover {
+    color: white;
+    background-color: black;
+}
+
+.icon {
+    width: 30%;
+    margin-left: 30%;
+    transition: width 1s;
+}
+
+.icon:hover {
+    width: 35%;
+    opacity: 70%;
 }
 
 @media only screen and (max-width: 1400px) {
@@ -325,10 +337,6 @@ footer {
         flex-direction: column-reverse;
     }
 
-    #explore {
-        margin-left: 40px;
-    }
-
     #index-page .row:first-child, #index-page .row:nth-child(2) {
         margin-bottom: 0;
     }
@@ -350,11 +358,6 @@ footer {
     }
 
     #checkOutBtn {
-        line-height: 2.0;
-        margin-left: 36.5%;
-    }
-
-    #spcobtn {
         line-height: 2.0; 
         margin-left: 11%; 
         margin-right: 0 !important;
@@ -383,6 +386,60 @@ footer {
         display:block !important;
         width: 100% !important;
         margin-bottom: 0!important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    #checkOutBtn {
+        margin-left: 4.9%;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    #checkOutBtn {
+        margin-left: 4.9%;
+    }
+}
+
+@media only screen and (max-width: 537px) {
+    #checkOutBtn {
+        margin-left: 4.5%;
+    }
+}
+
+@media only screen and (max-width: 530px) {
+    #checkOutBtn {
+        margin-left: 4%;
+    }
+}
+
+@media only screen and (max-width: 526px) {
+    #checkOutBtn {
+        margin-left: 4%;
+    }
+}
+
+@media only screen and (max-width: 520px) {
+    #checkOutBtn {
+        margin-left: 3%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    #checkOutBtn {
+        margin-left: 2%;
+    }
+}
+
+@media only screen and (max-width: 484px) {
+    #checkOutBtn {
+        margin-left: 1%;
+    }
+}
+
+@media only screen and (max-width: 468px) {
+    #checkOutBtn {
+        margin-left: 0.5%;
     }
 }
 
