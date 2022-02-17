@@ -11,31 +11,6 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header class="fixed-top">
-        <div class="navbar navbar-expand-md navbar-light container ">
-            <a class="navbar-brand col-5" href="catalogPage.html">commercium</a>
-            <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <section class="d-flex align-items-center ms-5">
-                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_2Lm1d0.json" background="transparent"  speed="1"  style="height: 40px; width: auto;"  loop  autoplay>
-                        </lottie-player>
-                        <p id="timer" class="mb-0">00:00:00</p>
-                    </section>
-                    <div class="navbar-nav ms-auto">
-                        <a class="nav-link active mx-2" aria-current="page" href="#"><img src="images/list_alt_black_24dp.svg" alt="task-list"></a>
-                        <a class="nav-link mx-2" href="catalogPage.html"><img src="images/replay_black_24dp.svg" alt="restart-game"></a>
-                        <a class="nav-link mx-2" href="index.html"><img src="images/close_black_24dp.svg" width="28px" alt="end-game"></a>
-                    </div>
-                </div>
-            </div>            
-        </div>
-    </header>
-
     <section class="container mt-8">
         <p class="mb-1 lh-1"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Search</p>
         <h1 class="searchResult mt-0">Search</h1>
@@ -60,14 +35,14 @@
             value="Search"
           />
         </form>
-          <a id="spcobtn" href="checkout.html" class="btn btn-primary rounded-4 fs-5 me-4 mb-3"
+          <a id="checkOutBtn" href="checkout.html" class="btn btn-primary rounded-4 fs-5 me-4 mb-3"
             ><i class="bi bi-cart-fill"></i> <span id="cartItems">0</span></a
           >
           <div class="dropdown d-lg-none" id="filter-category">
             <button class="btn btn-primary dropdown-toggle" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
               Category
             </button>
-            <ul class="dropdown-menu" aria-labelledby="filter-category-btn"></ul>
+            <ul class="dropdown-menu rounded" aria-labelledby="filter-category-btn"></ul>
           </div>
         </div>
         <!-- Text need to be change depending on what is available in the api -->
