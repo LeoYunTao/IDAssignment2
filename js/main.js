@@ -23,6 +23,8 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     console.log(items);
     console.log(user);
 
+    console.log(sessionStorage.getItem('startTime'));
+
     $("body").append(`<div
     class="modal fade"
     id="exampleModal"
@@ -224,6 +226,12 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
         $("#itemList").append(`<div class="border border-3 rounded my-3"><p><i class="bi bi-exclamation-square-fill"></i> Product - ${items[product.itemIndex].product_name}</p> <p><i class="bi bi-123"></i> Quantity - ${product.quantity}</p></div>`);
     });
 
+    setInterval(() => {
+        let time = Date.now() - parseInt(sessionStorage.getItem("startTime"));
+        let minutes = Math.floor(time / 60000);
+        let seconds = (Math.floor(time - minutes * 60000) / 1000).toFixed(2);
+        $("#timer").text(`${minutes.toString().padStart(2, 0)}:${seconds.toString().padStart(5, 0)}`);
+    }, 10);
 }
 
 function restartGame() {
@@ -420,6 +428,7 @@ function startGame() {
         generateAndStoreUser().finally( () => {
             let categories = getItemsCategory();
             sessionStorage.setItem("categories", JSON.stringify(categories));
+            sessionStorage.setItem("startTime", Date.now());
             window.location.href = "/catalogPage.html";
         });
     });
@@ -429,4 +438,10 @@ function startGame() {
 function endGame() {
     sessionStorage.clear();
     window.location.href = "/index.html";
+}
+
+function finishGame() {
+    sessionStorage.setItem("endTime", Date.now());
+    //TODO ADD POINTS AND ACCURACY
+    window.location.href = "/leaderboard.html";
 }
