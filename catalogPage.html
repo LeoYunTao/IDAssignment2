@@ -120,14 +120,15 @@
 
     <section class="container mt-7">
       <div class="mb-4 d-flex flex-wrap">
-        <div class="form-floating mb-3 button-in-search-bar me-4">
+        <form id="searchArea" class="form-floating mb-3 button-in-search-bar me-4">
           <input
             type="text"
             class="form-control form-control-lg rounded-4"
             id="floatingInput"
             placeholder="name@example.com"
+            name="search"
           />
-          <label for="floatingInput"
+          <label id="floatingLabel" for="floatingInput"
             ><i class="bi bi-search"></i> &nbsp; Search for your items
             here</label
           >
@@ -136,15 +137,15 @@
             class="btn btn-primary btn-sm d-flex rounded-4"
             value="Search"
           />
-        </div>
-        <a href="checkout.html" class="btn btn-primary rounded-4 fs-5 me-4 mb-3"
-          ><i class="bi bi-cart-fill"></i> 0</a
+        </form>
+        <a href="checkout.html" id="checkOutBtn" class="btn btn-primary rounded-4 fs-5"
+          ><i class="bi bi-cart-fill"></i> <span id="cartItems">0</span></a
         >
         <div class="dropdown d-lg-none" id="filter-category">
           <button class="btn btn-primary dropdown-toggle" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
             Category
           </button>
-          <ul class="dropdown-menu" aria-labelledby="filter-category-btn"></ul>
+          <ul class="dropdown-menu rounded" aria-labelledby="filter-category-btn"></ul>
         </div>
       </div>
       <!-- Text need to be change depending on what is available in the api -->
@@ -155,30 +156,8 @@
       <h2>Popular</h2>
     </section>
 
-    <section class="container">
-      <div class="card-group catalog">
-        <div class="card-full">
-          <a href="productDesc.html" class="card rounded-4">
-            <img
-              src="images/close-up-gd4212656f_1920.jpg"
-              class="card-img-top rounded-4"
-              alt="..."
-            />
-            <div class="card-body">
-              <span class="p me-2"
-                ><i class="bi bi-tags-fill"></i> Electronics</span
-              >
-              <span class="p"><i class="bi bi-bag-fill"></i> 900K</span>
-              <h4 class="card-title mt-1">A Very Good lightbulb</h4>
-            </div>
-            <div class="card-footer bg-transparent border-0">
-              <h4>S$100.00</h4>
-            </div>
-          </a>
-          <button class="btn btn-primary">ADD TO CART</button>
-        </div>
-      </div>
-    </section>
+    <div class="card-group catalog container" id="popularItems">
+    </div>
 
     <div class="container mt-5">
       <h2>Explore</h2>

@@ -17,7 +17,7 @@
     />
     <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body id="checkoutPage">
 
     <section class="container mt-7">
         <h1 style="color: red;">CHECKOUT</h1>
@@ -28,20 +28,50 @@
     <section class="bought container">
         <h2><i class="bi bi-basket2"></i> Products Added</h2>
         <hr class="blackhr">
-        <div class="boughtAlready border border-5">
-            <ul>
-                <li>[PRODUCT NAME HERE]</li>
-                <li>[PRODUCT NAME HERE]</li>
-                <li>[PRODUCT NAME HERE]</li>
-            </ul>
-        </div>
+        <ul class="productsAdded border border-5" id="products">
+
+            <li class="d-flex flex-wrap p-3">
+                <!-- <div id="addedFlex" class="d-flex">
+                    <div id="addedFlex" class="d-flex">
+                        <img class="cartImg" src="images/monitor-149362.png" alt="imac">
+                        <div id="itemDesc" class="ms-5 p-3">
+                            <h5>Apple 27" iMac Monitor</h5>
+                            <p>Category: Electronics, Monitors</p>
+                            <p>Price: S$ 2599</p>
+                            <hr class="blackhr">
+                            <input type="number" class="form-control form-control-lg" name="quantity" value="1" min="0" max="100">
+                        </div>
+                    </div>
+                    <div id="removeBtn" class=" p-5">
+                        <p id="removeBtn" class="mt-5"><i class="bi bi-x-circle fs-1"></i></p>
+                    </div>
+                </div> -->
+
+                <!-- <div class="d-flex">
+                    <div class="d-flex">
+                        <div class="card-background" style="background-image: url('images/animal-6889575_1920.jpg'); width: 300px; height: 300px;"></div>
+                            <div class="ms-5 p-3">
+                                <h5>Winter Doge</h5>
+                                <p>Category: NFT (lol)</p>
+                                <p>Price: S$ 999999999999999999</p>
+                                <hr class="blackhr">
+                                <p>Quantity: 1</p>
+                            </div>
+                            </div>
+                            <div id="removeBtn" class=" p-5">
+                                <p class="mt-5"><i class="bi bi-x-circle fs-1"></i></p>
+                            </div>
+                    </div>
+                </div> -->
+            </li>
+        </ul>
     </section>
     
     <section class="container">
         <h2 class="my-3" style="color: red;">Payment</h2>
         <hr class="blackhr">
         <h3 class="mb-4"><i class="bi bi-person-circle"></i> Personal Information</h3>
-        <div class="d-flex flex-wrap justify-content-evenly">
+        <div id="checkOutForm" class="d-flex flex-wrap justify-content-evenly">
             <div class="form-floating mb-3 col-5">
                 <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput"><i class="bi bi-person-fill"></i> First Name</label>
@@ -58,7 +88,7 @@
                 <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
                 <label for="floatingInput"><i class="bi bi-telephone"></i> Phone Number</label>
             </div>
-            <div class="mb-3 col-5 d-flex justify-content-between">
+            <div id="furtherDivide" class="mb-3 col-5 d-flex justify-content-between">
                 <div class="form-floating mb-3 col-5">
                     <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput"><i class="bi bi-house"></i> Address</label>
@@ -68,7 +98,7 @@
                     <label for="floatingInput"><i class="bi bi-building"></i> City</label>
                 </div>
             </div>
-            <div class="mb-3 col-5 d-flex flex-wrap justify-content-between">
+            <div  id="furtherDivide" class="mb-3 col-5 d-flex flex-wrap justify-content-between">
                 <div class="form-floating mb-3 col-5">
                     <input type="text" class="form-control" id="floatingInput" placeholder="name@example.com">
                     <label for="floatingInput"><i class="bi bi-bank"></i> State</label>
@@ -100,29 +130,26 @@
                 <label for="floatingInput"><i class="bi bi-credit-card-2-back"></i> CVV</label>
             </div>
             <div class="form-floating mb-3 col-5">
-                <input type="date" class="form-control" id="floatingInput" placeholder="name@example.com" style="text-transform: uppercase;">
-                <label for="floatingInput"><i class="bi bi-calendar2-x"></i> Expiry Date</label>
+                <input type="month" class="form-control" id="floatingInput" placeholder="name@example.com" style="text-transform: uppercase;">
+                <label for="floatingInput"><i class="bi bi-calendar2-x" ></i> Expiry Date</label>
             </div>
         </div>
     </section>
 
     <section class="container">
         <hr class="blackhr">
-        <h2>Estimated Price: <span id="totalPrice"></span></h2>
+        <h2>Total Price: <span id="totalPrice"></span></h2>
         <hr class="blackhr">
     </section>
 
-    <section class="endGame container d-flex justify-content-between">
-        <div id="promoCode">
+    <section id="promoCode" class="endGame container d-flex justify-content-between">
+        <div>
             <h5>Do you have a promo code?</h5>
             <input type="text" id="pCode" name="promo">
             <input class="px-2" type="submit" value="Enter">
         </div>
         <div class="checkOut d-flex d-inline">
-            <lottie-player id="checkOutLottie" src="https://assets2.lottiefiles.com/packages/lf20_R7zbyC/Checkout.json"  
-            background="transparent"  speed="1"  style="width: 200px; height: auto;" hover loop  autoplay>
-            </lottie-player>
-            <button class="btn btn-block btn-primary shadow" type="button">&nbsp CHECKOUT!</button>
+            <button id="checkOutEnd" class="btn btn-block btn-primary shadow" type="button">CHECKOUT!</button>
         </div>
     </section>
     <footer class="container">

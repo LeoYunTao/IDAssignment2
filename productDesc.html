@@ -17,27 +17,15 @@
 <body>
     <main class="container mt-7">
         <p class="mb-1 lh-1 mt-8"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Product Description</p>
-        <h2 class="mt-0 mb-0">A very good lightbulb</h2>
+        <h2 class="mt-0 mb-0" id="productName">A very good lightbulb</h2>
         <hr width="33.33%">
     
         <section class="mt-6 row gx-0 gx-md-5">
             <div class="col-12 col-lg-7">
                 <div id="carouselExampleDark" class="carousel carousel-dark slide w-100" data-bs-ride="carousel">
                     <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                        <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
                     </div>
                     <div class="carousel-inner rounded">
-                      <div class="carousel-item active" data-bs-interval="3000">
-                        <img src="images/close-up-gd4212656f_1920.jpg" class="d-block img-fluid w-100" alt="...">
-                      </div>
-                      <div class="carousel-item" data-bs-interval="3000">
-                        <img src="images/lightbulb-2132354_1920.jpg" class="d-block img-fluid w-100" alt="...">
-                      </div>
-                      <div class="carousel-item" data-bs-interval="3000">
-                        <img src="images/light-bulb-1640438_1920.jpg" class="d-block img-fluid w-100" alt="...">
-                      </div>
                     </div>
                     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -53,20 +41,20 @@
             <div class="col-12 col-lg-5" style="position: relative;">
                 <!-- <h3 id="prodName">A very goodd lightbulb</h3> -->
                 <p id="prodRating"><!-- Product Rating --></p>
-                <span class="p fs-5 me-2"><i class="bi bi-tags-fill"></i> Electronics</span>
-                <span class="p fs-5"><i class="bi bi-bag-fill"></i> 900K</span>
+                <span class="p fs-5 me-2"><i class="bi bi-tags-fill"></i> <span id="productCategory">Electronics</span></span>
+                <span class="p fs-5"><i class="bi bi-bag-fill"></i> <span id="productSales">900K</span>
                 <h3 class="mt-3">Product Description</h3>
                 <p id="prodDesc">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam ut dignissim mauris. Pellentesque aliquam sit amet mi egestas accumsan. Phasellus fermentum orci vitae feugiat rhoncus. Curabitur aliquam porta placerat. </p>
-                <h4 class="mt-4">$100.00</h4>
+                <h4 class="mt-4" id="productPrice">$100.00</h4>
                 
-                <div class="row product-add-to-cart mt-4">
+                <form class="row product-add-to-cart mt-4" id="addToCart">
                     <div class="col-12 col-xl-6">
-                        <input type="number" class="form-control form-control-lg h-100" value="1" min="0" max="100">
+                        <input type="number" class="form-control form-control-lg h-100" name="quantity" value="1" min="0" max="100">
                     </div>
                     <div class="col-12 col-xl-6 mt-3 mt-xl-0">
                         <input type="submit" class="btn btn-primary w-100" value="ADD TO CART">
                     </div>
-                </div>
+                </form>
             </div>
         </section>
 
