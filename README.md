@@ -56,23 +56,50 @@ Technologies:
 
 -----------------------
 Testing:
+
+Scenario 1: Adding items to cart
+1. Press play now button
+2. Find any item in the catalog or search page
+3. Press add to cart
+4. Press checkout button
+5. Check whether item has been added
+
+Scenario 2: Test point and score system
+1. After starting the game, buy some items that are required in the shopping list
+2. Add to cart and checkout
+3. Check whether score adds up coorectly with what the user typed in the form and the products they have selected with the data in the API
+4. Check whether players can only redeem prizes that are equal to or below their points
+5. Check whether scored has been displayed correctly and in descending order in the leaderboard
+
+Scenario 3: Lottie animations and wrong subquery requests
+1. When loading the game after pressing play now or leaderboard page, check that the lottie appears and is working correctly
+2. When user tries to enter a subquery from the url bar, check that incorrectly typed subqueries would redirect them to a 404 page.
+
+Scenario 4: Test filters and hover animations
+1. Hover mouse over buttons and elements such as cards that have bootstrap or css hover animations and check if colour or size changes occur
+2. Select multiple filters in the catalog or search page and check if the products filtered are correct according to the catgories selected.
+3. Use the search bar and search for a particular item, check if the item appears.
+   
 Bugs:
 - Fixed the exploit where users could access any page without starting the game by forcing them to the index page if they tried to enter the url manually
 - Fixed buttons positioning when viewport was decreased even with proper media rules implementation
 - Total price of products bought did not add up and only the subtotal of the first product in the cart was added
 - Fixed timer that did not work in the search page
-- !!!!!!!! Partially fixed some bootstrap icons that were not appearing
+- Fixed some bootstrap icons that were not appearing
 - Lottie animations and text were not appearing correctly in the index page at 768px viewport
 - Home button in active state even though user clicked on another page (Button not properly greyed out)
-- !!!!!!!! Number of sales does not appear for products under the popular tag in catalog page
+- Fixed number of sales does not appear for products under the popular tag in catalog page
 - Product Category appears as undefined in the shopping list
 - Error 400 BadRequest when posting data to restDB
 - Time appearing in ISO format instead of minutes and seconds only
 - Google chrome display certain elements with the wrong css e.g(wrong width)
 - Button-primay color sometimes revert back to its original color
-- Small change of getting stuck in the loading page when pressed the play now button
+- Small chance of getting stuck in the loading page when pressed the play now button
 
-link for website: https://leoyuntao.github.io/IDAssignment2/
+-----------------------
+GitHub Link
+
+Link for website: https://leoyuntao.github.io/IDAssignment2/
 
 -----------------------
 
@@ -85,9 +112,9 @@ Coding
 - [Google](https://fonts.google.com/) for Roboto and Poppins font
 
 Media
-- [Pixabay](https://pixabay.com/) for all images and api used in the website
+- [Pixabay](https://pixabay.com/) for all images and API used in the website
 - [Lottie](https://lottiefiles.com/) for all lottie animations
-- [Iconfinder](https://www.iconfinder.com/social-media-icons) for social media icons
+- [Iconfinder](https://www.iconfinder.com/social-media-icons) for social media and credit card icons
 
 Acknowledgements
 - [StackOverflow](https://stackoverflow.com/) for learning
