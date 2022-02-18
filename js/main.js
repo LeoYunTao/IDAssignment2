@@ -351,7 +351,7 @@ if (window.location.pathname != PATHNAME + "/index.html" && window.location.path
             const param = new URLSearchParams(window.location.search);
             param.set("search", search);
     
-            window.location.href = PATHNAME + `searchPage.html?${param}`;
+            window.location.href = PATHNAME + `/searchPage.html?${param}`;
             
         });
     }
