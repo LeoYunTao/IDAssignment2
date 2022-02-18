@@ -1,14 +1,14 @@
 // Add the header to each page with main.js file
 
 const PIXABAY_API_KEY = "9602505-f76ea265b3e81cda17324512f";
+const APIKEY = "620e41f234fd621565858720";
 
 // Max items the api accept is 100
 const ITEMS_COUNT = 100;
 
 console.log(window.location.pathname);
-if (window.location.pathname != "/index.html" && window.location.pathname != "/" && window.location.pathname != "/leaderboard.html" && window.location.pathname != "/rewards.html")
+if (!window.location.pathname.includes("/index.html") && window.location.pathname != "/" && !window.location.pathname.includes("/leaderboard.html") && !window.location.pathname.includes("/rewards.html"))
 {
-
     if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') == "[]" || sessionStorage.getItem('items') == "") {
         window.location.href = "/index.html"
 
@@ -189,7 +189,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     </button>
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <section id="timeSection" class="d-flex align-items-center ms-0 ms-xl-5">
+        <section id="timeSection" class="d-flex align-items-center mx-0 ms-xl-5">
         <lottie-player
             src="https://assets1.lottiefiles.com/packages/lf20_2Lm1d0.json"
             background="transparent"
@@ -227,8 +227,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     user.taskList.forEach(product => {
         let item = findItem(items, product.uid);
         $("#itemList").append(`<div class="border border-3 rounded mb-3 p-3"><p><i class="bi bi-exclamation-circle"></i> ${item.product_name}</p> 
-        <p class="mb-0"><i class="bi bi-123"></i> Quantity - ${product.quantity}</p> <p class="mb-0"><i class="bi bi-123"></i> 
-        Categories - ${item.department}<div>`);
+        <p class="mb-0"><i class="bi bi-123"></i> Categories - ${item.department}</p><p class="mb-0"> Quantity - ${product.quantity}</p> <div>`);
     });
 
     let updateTimer = setInterval(() => {
@@ -240,7 +239,7 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
         // });
     }, 10);
 
-    if (window.location.pathname == "/catalogPage.html" || window.location.pathname == "/searchPage.html") {
+    if (window.location.pathname.includes("/catalogPage.html") || window.location.pathname.includes("/searchPage.html")) {
         let url = new URL(window.location.href);
     
         let categorySearched = null;
@@ -266,13 +265,13 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
         let currentItem = 0;
         let filteredItems = items;
     
-        if(window.location.pathname == "/catalogPage.html") {
+        if(window.location.pathname.includes("/catalogPage.html")) {
             let popular = [...items].sort((a, b) => b.itemsSold - a.itemsSold).slice(0, 12);
             displayItems(popular, 0, element="#popular", 12);
     
             currentItem = displayItems(filteredItems, 0);
         }
-        else if (window.location.pathname == "/searchPage.html") {
+        else if (window.location.pathname.includes("/searchPage.html")) {
             let search = ""; 
             if (url.searchParams.get("search") != null)
             {
@@ -283,7 +282,13 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             if (url.searchParams.get("category") != null) {
                 categories = url.searchParams.get("category").split(",");
             }
-    
+
+            let sortBy = "";
+            if (url.searchParams.get("sortBy") != null) {
+                sortBy = url.searchParams.get("sortBy");
+                $("#dropdownMenuButton1").text(sortBy);
+            }
+            
             $("#productName").text(search);
     
             filteredItems = items.filter(item => {
@@ -295,7 +300,22 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
                     return item.product_name.toLowerCase().includes(search.toLowerCase()) && item.department.split(" & ").some(category => categories.includes(category));
                 }
             });
+
+            $("#resultNum").text(filteredItems.length);
     
+            if (sortBy == "" || sortBy == "Default") {
+
+            }
+            else if (sortBy == "Price: Low to High") {
+                filteredItems.sort((a, b) => a.price - b.price);
+            }
+            else if (sortBy == "Price: High to Low") {
+                filteredItems.sort((a, b) => b.price - a.price);
+            }
+            else if (sortBy == "Name: A to Z") {
+                filteredItems.sort((a, b) => a.product_name.localeCompare(b.product_name));
+            }
+
             console.log(filteredItems);
     
             currentItem = displayItems(filteredItems, 0);
@@ -327,12 +347,15 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
         });
     }
     
-    if (window.location.pathname == "/productDesc.html") {
+    if (window.location.pathname.includes("/productDesc.html")) {
         const urlParams = new URLSearchParams(window.location.search);
         const uid = urlParams.get("productId");
     
         const item = findItem(JSON.parse(sessionStorage.getItem('items')), uid);
-    
+        if (item == null) {
+            window.location.href = "/404.html";   
+        }
+
         $("#productName").text(item.product_name);
         $("#productCategory").text(item.category);
         $("#productSales").text(item.itemsSold + "K");
@@ -359,15 +382,13 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
             
             addToCart(uid, quantity);
 
-            if (window.location.pathname == "/productDesc.html") {
+            if (window.location.pathname.includes("/productDesc.html")) {
                 window.location.href = "/catalogPage.html";
             }
-        
-            $('.toast').toast('show');
         });
     }
     
-    if (window.location.pathname == "/checkout.html") {
+    if (window.location.pathname.includes("/checkout.html")) {
         
         updateCart();
     
@@ -403,11 +424,12 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     
             const cartAccuracy = (requiredItem.length - (itemsDidntBuy.length + itemsBuyForNoReason.length)) / requiredItem.length;
             
-            const totalAccuracy = (sum/TOTAL) + cartAccuracy;
-    
+            const totalAccuracy = ( (sum/TOTAL) + cartAccuracy ) / 2;
             const timeTaken = Date.now() - parseInt(sessionStorage.getItem("startTime"));
     
-            const score = totalAccuracy * (1/ timeTaken) * 10000;
+            const score = parseInt(totalAccuracy * (1/ (timeTaken / 10000)) * 1000);
+
+            console.log(totalAccuracy * (1/ timeTaken) * 10000);
             console.log(totalAccuracy);
     
             // display modal and show the speed runner result
@@ -415,7 +437,49 @@ if (window.location.pathname != "/index.html" && window.location.pathname != "/"
     
             $("#time").text(millisecondsToMinutesAndSeconds(timeTaken));
             $("#score").text(score);
-            $("#accuracy").text(totalAccuracy + "%");
+            $("#accuracy").text(totalAccuracy * 100 + "%");
+
+            localStorage.setItem("score", score);
+
+            $("#finish").on("click", function (event) {
+                event.preventDefault();
+
+                let name = $("#name").val();
+
+                let jsondata = {
+                "name": name,
+                "time": timeTaken,
+                "score": score,
+                "accuracy": totalAccuracy,
+                };
+
+                console.log(jsondata);
+
+                var settings = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://fastgame-8ea2.restdb.io/rest/details",
+                    "method": "POST",
+                    "headers": {
+                        "content-type": "application/json",
+                        "x-apikey": APIKEY,
+                        "cache-control": "no-cache"
+                    },
+                    "processData": false,
+                    "data": JSON.stringify(jsondata),
+                    "beforeSend": function(){
+                        $("#finish").prop( "disabled", true);
+                        $("#finish").trigger("reset");
+                        }
+                };
+
+                $.ajax(settings).done(function (response) {
+                    window.location.href = "/rewards.html";
+                }).fail(message => {
+                    alert("ERROR: username is already taken");
+                    $("#finish").prop( "disabled", false);
+                });
+            });
     
             endGameModal.show();
         });
@@ -511,21 +575,19 @@ function updateCart() {
         const product = findItem(items, item.uid);
         let subTotal = item.quantity * product.price;
         $("#products").append(`
-        <li class="d-flex flex-wrap p-3">
-            <div id="addedFlex" class="d-flex col-12 justify-content-between">
-                <div id="addedFlex" class="d-flex">
-                    <img class="cartImg" src="${product.largeImageURLs}">
-                    <div id="itemDesc" class="ms-5 p-3">
-                    <h5>${product.product_name}</h5> 
-                    Price: S$${subTotal.toFixed(2)}
-                    <hr class="blackhr">
-                    <p>Quantity: </p>
-                    <input type="number" class="form-control form-control-lg" name="quantity" onchange="updateValue(${item.cartId}, this)" value="${item.quantity}" min="1" max="100">
+        <li class="d-flex flex-wrap p-4 mt-4 bg-light rounded row gx-5">
+            <div class="card-background col-12 col-md-6" style="background-image: url('${product.largeImageURLs}'); width:300px; height 400px;"></div>
+            <div class="col-12 col-md-6">
+                <div class="p-3">
+                <h5>${product.product_name}</h5> 
+                Price: S$${subTotal.toFixed(2)}
+                <hr class="blackhr">
+                <div class="d-flex justify-content-between align-items-center">
+                    <p class="mb-0 me-3">Quantity: </p>
+                    <input type="number" class="form-control form-control-lg w-100" name="quantity" onchange="updateValue(${item.cartId}, this)" value="${item.quantity}" min="1" max="100">
                 </div>
-            </div>
-            <div id="removeBtn" class="p-3 mt-5">
-                <button class="btn" onclick="removeFromCart(${item.cartId})">
-                <i class="bi bi-x-lg"></i></button>
+                <button class="btn btn-danger mt-5" onclick="removeFromCart(${item.cartId})">
+                <i class="bi bi-trash-fill"></i></button>
             </div>
         </li>
         `);
@@ -575,7 +637,7 @@ function addToCart(uid, quantity) {
 
     updateCartItemNumber();
 
-
+    $('.toast').toast('show');
 }
 
 function findItem(items, uid) {
@@ -585,8 +647,6 @@ function findItem(items, uid) {
             return item;
         }
     }
-
-    throw new Error("Item not found");
 }
 
 function displayItems(items, startingPosition, element="#explore", numberOfItems=8) {
@@ -636,6 +696,14 @@ function filterCategory(category) {
     }
 
     window.location.href = "/searchPage.html?" + url.searchParams;
+}
+
+function sortBy(sortByName) {
+    $("#dropdownMenuButton1").text(sortByName);
+    let param = new URLSearchParams(window.location.search);
+    param.set("sortBy", sortByName);
+
+    window.location.href = "/searchPage.html?" + param;
 }
 
 function generateAndStoreItems() {
@@ -726,8 +794,37 @@ function endGame() {
     window.location.href = "/index.html";
 }
 
-function finishGame() {
-    sessionStorage.setItem("endTime", Date.now());
-    //TODO ADD POINTS AND ACCURACY
-    window.location.href = "/leaderboard.html";
-}
+$('#dropdownMenuButton1').on('change',function(){
+    $('#selectFilter').html($(this).val());   
+});
+
+/* var popover = new bootstrap.Popover(document.querySelector('.popOver'), {
+    trigger: 'focus'
+  })
+
+$("[data-toggle=popOver]").popover({
+    html = true,
+    content = `<div id="popover-content">
+                    <div class="row">
+                        <div class="col-2">
+                            <a href="https://www.facebook.com/"><img class="icon" src="images/5282541_fb_social media_facebook_facebook logo_social network_icon.png" alt="facebook"></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.instagram.com/"><img class="icon" src="images/5282544_camera_instagram_social media_social network_instagram logo_icon.png" alt="instagram"></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.twitter.com/"><img class="icon" src="images/5282551_tweet_twitter_twitter logo_icon.png" alt="twitter"></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.whatsapp.com/"><img class="icon" src="images/5282549_call_chat_mobile_whatsapp_whatsapp logo_icon.png" alt="whatsapp"></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.reddit.com/"><img class="icon" src="images/5282547_forum_reddit_reddit logo_icon.png" alt="reddit"></a>
+                        </div>
+                        <div class="col-2">
+                            <a href="https://www.pinterest.com/"><img class="icon" src="images/5282545_pin_pinterest_inspiration_pinterest logo_icon.png" alt="pinterest"></a>
+                        </div>
+                    </div>
+                </div>`
+}) */
+  

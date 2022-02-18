@@ -1,4 +1,8 @@
-console.log(window.location.pathname);
+if (window.location.pathname.includes("index.html"))
+{
+    console.log(window.location.pathname);
+}
+
 const PIXABAY_API_KEY = "9602505-f76ea265b3e81cda17324512f";
 
 // Max items the api accept is 100
