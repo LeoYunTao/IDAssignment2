@@ -1,4 +1,12 @@
 // Add the header to each page with main.js file
+let PATHNAME = "";
+let x = window.location.pathname.split("/");
+if (window.location.pathname.split("/").length >= 3) {
+    x.splice(-1, 1);
+    PATHNAME = x.join("/");
+}
+
+console.log(PATHNAME);
 
 const PIXABAY_API_KEY = "9602505-f76ea265b3e81cda17324512f";
 const APIKEY = "620e41f234fd621565858720";
@@ -7,13 +15,14 @@ const APIKEY = "620e41f234fd621565858720";
 const ITEMS_COUNT = 100;
 
 console.log(window.location.pathname);
-if (!window.location.pathname.includes("/index.html") && window.location.pathname != "/" && !window.location.pathname.includes("/leaderboard.html") && !window.location.pathname.includes("/rewards.html"))
+if (window.location.pathname != PATHNAME + "/index.html" && window.location.pathname != PATHNAME + "/" && window.location.pathname != PATHNAME + "/leaderboard.html" && window.location.pathname != PATHNAME + "/rewards.html")
 {
+
     if (sessionStorage.getItem('items') == null || sessionStorage.getItem('items') == "[]" || sessionStorage.getItem('items') == "") {
-        window.location.href = "/index.html"
+        window.location.href = PATHNAME + "/index.html";
 
         if (sessionStorage.getItem("user") == null || sessionStorage.getItem("user") == "") {
-            window.location.href = "/index.html"
+            window.location.href = PATHNAME + "/index.html";
         }
     }
 
@@ -239,7 +248,7 @@ if (!window.location.pathname.includes("/index.html") && window.location.pathnam
         // });
     }, 10);
 
-    if (window.location.pathname.includes("/catalogPage.html") || window.location.pathname.includes("/searchPage.html")) {
+    if (window.location.pathname == PATHNAME + "/catalogPage.html" || window.location.pathname == PATHNAME + "/searchPage.html") {
         let url = new URL(window.location.href);
     
         let categorySearched = null;
@@ -265,13 +274,13 @@ if (!window.location.pathname.includes("/index.html") && window.location.pathnam
         let currentItem = 0;
         let filteredItems = items;
     
-        if(window.location.pathname.includes("/catalogPage.html")) {
+        if(window.location.pathname == PATHNAME + "/catalogPage.html") {
             let popular = [...items].sort((a, b) => b.itemsSold - a.itemsSold).slice(0, 12);
             displayItems(popular, 0, element="#popular", 12);
     
             currentItem = displayItems(filteredItems, 0);
         }
-        else if (window.location.pathname.includes("/searchPage.html")) {
+        else if (window.location.pathname == PATHNAME + "/searchPage.html") {
             let search = ""; 
             if (url.searchParams.get("search") != null)
             {
@@ -342,18 +351,18 @@ if (!window.location.pathname.includes("/index.html") && window.location.pathnam
             const param = new URLSearchParams(window.location.search);
             param.set("search", search);
     
-            window.location.href = `searchPage.html?${param}`;
+            window.location.href = PATHNAME + `searchPage.html?${param}`;
             
         });
     }
     
-    if (window.location.pathname.includes("/productDesc.html")) {
+    if (window.location.pathname == PATHNAME + "/productDesc.html") {
         const urlParams = new URLSearchParams(window.location.search);
         const uid = urlParams.get("productId");
     
         const item = findItem(JSON.parse(sessionStorage.getItem('items')), uid);
         if (item == null) {
-            window.location.href = "/404.html";   
+            window.location.href = PATHNAME + "/404.html";   
         }
 
         $("#productName").text(item.product_name);
@@ -382,13 +391,13 @@ if (!window.location.pathname.includes("/index.html") && window.location.pathnam
             
             addToCart(uid, quantity);
 
-            if (window.location.pathname.includes("/productDesc.html")) {
-                window.location.href = "/catalogPage.html";
+            if (window.location.pathname == PATHNAME + "/productDesc.html") {
+                window.location.href = PATHNAME + "/catalogPage.html";
             }
         });
     }
     
-    if (window.location.pathname.includes("/checkout.html")) {
+    if (window.location.pathname == PATHNAME + "/checkout.html") {
         
         updateCart();
     
@@ -474,7 +483,7 @@ if (!window.location.pathname.includes("/index.html") && window.location.pathnam
                 };
 
                 $.ajax(settings).done(function (response) {
-                    window.location.href = "/rewards.html";
+                    window.location.href = PATHNAME + "/rewards.html";
                 }).fail(message => {
                     alert("ERROR: username is already taken");
                     $("#finish").prop( "disabled", false);
@@ -695,7 +704,7 @@ function filterCategory(category) {
         }
     }
 
-    window.location.href = "/searchPage.html?" + url.searchParams;
+    window.location.href = PATHNAME + "/searchPage.html?" + url.searchParams;
 }
 
 function sortBy(sortByName) {
@@ -703,7 +712,7 @@ function sortBy(sortByName) {
     let param = new URLSearchParams(window.location.search);
     param.set("sortBy", sortByName);
 
-    window.location.href = "/searchPage.html?" + param;
+    window.location.href = PATHNAME + "/searchPage.html?" + param;
 }
 
 function generateAndStoreItems() {
@@ -773,7 +782,7 @@ function startGame() {
             sessionStorage.setItem("categories", JSON.stringify(categories));
             sessionStorage.setItem("startTime", Date.now());
             sessionStorage.setItem("cart", JSON.stringify([]));
-            window.location.href = "/catalogPage.html";
+            window.location.href = PATHNAME + "/catalogPage.html";
         });
     });
 
@@ -791,7 +800,7 @@ function restartGame() {
 
 function endGame() {
     sessionStorage.clear();
-    window.location.href = "/index.html";
+    window.location.href = PATHNAME + "/index.html";
 }
 
 $('#dropdownMenuButton1').on('change',function(){
