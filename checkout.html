@@ -19,16 +19,15 @@
 </head>
 <body id="checkoutPage">
 
-    <section class="container mt-7">
-        <h1 class="main-color">CHECKOUT</h1>
-        <hr class="blackhr" style="padding: 5px;">   
+    <section class="container mt-8">
+        <p class="mb-1 lh-1"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Checkout</p>
+        <h1 class="mt-0">Checkout</h1>
     </section>
-    <br>
     
-    <section class="bought container">
-        <h2><i class="bi bi-basket2"></i> Products Added</h2>
-        <hr class="blackhr">
-        <ul class="productsAdded border border-5" id="products">
+    <section class="bought container mt-6">
+        <h2 class="mb-0"> Products Added</h2>
+        <hr class="blackhr ms" style="width:250px">
+        <ul class="productsAdded ps-0 border-5 mt-5" id="products">
 
             <li class="d-flex flex-wrap p-3">
                 <!-- <div id="addedFlex" class="d-flex">
@@ -66,91 +65,107 @@
             </li>
         </ul>
     </section>
+
     
-    <form id="paymentDetails">
+    <section class="container mt-7">
+        <hr class="blackhr ms-auto" style="width:250px">
+        <p class="text-end monospace">Total Price: <span class="h3" id="totalPrice"></span></p>
+    </section>
+    
+    <form id="paymentDetails" class="mt-6">
 
     <section class="container">
-        <h2 class="my-3 main-color">Payment</h2>
-        <hr class="blackhr">
-        <h3 class="mb-4"><i class="bi bi-person-circle"></i> Personal Information</h3>
-        <div id="checkOutForm" class="d-flex flex-wrap justify-content-evenly">
-            <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" name="first_name" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-person-fill"></i> First Name</label>
-            </div>
-            <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" name="last_name" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-person-fill"></i> Last Name</label>
-            </div>
-            <div class="form-floating mb-3 col-5">
-                <input type="email" class="form-control" id="floatingInput" name="email" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-envelope"></i> Email</label>
-            </div>
-            <div class="form-floating mb-3 col-5">
-                <input type="tel" class="form-control" id="floatingInput" name="phone_number" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-telephone"></i> Phone Number</label>
-            </div>
-            <div id="furtherDivide" class="mb-3 col-5 d-flex justify-content-between">
-                <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" name="street_address" placeholder="name@example.com" required>
-                    <label for="floatingInput"><i class="bi bi-house"></i> Address</label>
+        <h2 class="my-3">Payment</h2>
+        <hr class="blackhr" style="width:250px">
+        
+        <div class="row gx-5">
+            <div class="col-12 col-lg-6">
+                <h3 class="mb-4 mt-5"><i class="bi bi-person-circle"></i> Personal Information</h3>
+                <div id="checkOutForm" class="d-flex flex-wrap justify-content-between row">
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="first_name" name="first_name" placeholder="name@example.com" >
+                        <label for="first_name" class="px-4"><i class="bi bi-person-fill"></i> First Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="last_name" name="last_name" placeholder="name@example.com" >
+                        <label for="last_name" class="px-4"><i class="bi bi-person-fill"></i> Last Name</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" >
+                        <label for="email" class="px-4"><i class="bi bi-envelope"></i> Email</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="name@example.com" >
+                        <label for="phone_number" class="px-4"><i class="bi bi-telephone"></i> Phone Number</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="street_address" name="street_address" placeholder="name@example.com" >
+                        <label for="street_address" class="px-4"><i class="bi bi-house"></i> Address</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="city" name="city" placeholder="name@example.com" >
+                        <label for="city" class="px-4"><i class="bi bi-building"></i> City</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="state" name="state" placeholder="name@example.com" >
+                        <label for="state" class="px-4"><i class="bi bi-bank"></i> State</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="name@example.com" >
+                        <label for="zip_code" class="px-4"><i class="bi bi-house-door"></i> Zip</label>
+                    </div>
                 </div>
-                <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" name="city" placeholder="name@example.com" required>
-                    <label for="floatingInput"><i class="bi bi-building"></i> City</label>
-                </div>
             </div>
-            <div  id="furtherDivide" class="mb-3 col-5 d-flex flex-wrap justify-content-between">
-                <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" name="state" placeholder="name@example.com" required>
-                    <label for="floatingInput"><i class="bi bi-bank"></i> State</label>
-                </div>
-                <div class="form-floating mb-3 col-5">
-                    <input type="text" class="form-control" id="floatingInput" name="zip_code" placeholder="name@example.com" required>
-                    <label for="floatingInput"><i class="bi bi-house-door"></i> Zip</label>
-                </div>
+            <div class="col-12 col-lg-6">
+                <h3 class="mb-4 mt-5"><i class="bi bi-credit-card"></i> Credit Card Information</h3>
+                <div class="d-flex flex-wrap justify-content-between row w-100">
+                    <h5 class="fs-4">Accepted Cards</h5>
+                    <div class="d-flex flex-wrap mb-3 col-12">
+                        <div class="col-3">
+                            <img class="icon" src="images/1933702_charge_credit card_debit_payment_visa_icon.png" alt="visa accepted">
+                        </div>
+                        <div class="col-3">
+                            <img class="icon" src="images/1933703_charge_credit card_debit_mastercard_payment_icon.png" alt="mastercard accepted">
+                        </div>
+                        <div class="col-3">
+                            <img class="icon" src="images/4373073_amex_card_credit_logo_logos_icon.png" alt="amex accepted">
+                        </div>
+                        <div class="col-3">
+                            <img class="icon" src="images/1156722_finance_jcb_logo_payment_icon.png" alt="jcb accepted">
+                        </div>
+                        
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="credit_card_name" name="credit_card_name" placeholder="name@example.com" >
+                        <label for="credit_card_name" class="px-4"><i class="bi bi-person-bounding-box"></i> Name on Card</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="text" class="form-control" id="cc_number" name="cc_number" placeholder="name@example.com" >
+                        <label for="cc_number" class="px-4"><i class="bi bi-credit-card-2-front"></i> Credit Card Number</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="number" class="form-control" id="CVV" min="0" name="CVV" placeholder="name@example.com" >
+                        <label for="CVV" class="px-4"><i class="bi bi-credit-card-2-back"></i> CVV</label>
+                    </div>
+                    <div class="form-floating mb-3 col-6">
+                        <input type="month" class="form-control" id="expiration_date"  name="expiration_date" style="text-transform: uppercase;">
+                        <label for="expiration_date" class="px-4"><i class="bi bi-calendar2-x" ></i> Expiry Date</label>
+                    </div>
+            </div>
             </div>
         </div>
-        <br>
-        <h3 class="mb-4"><i class="bi bi-credit-card"></i> Credit Card Information</h3>
-        <div class="d-inline">
-            <img src="" alt="">
-            <img src="" alt="">
-            <img src="" alt="">
-        </div>
-        <div class="d-flex flex-wrap justify-content-evenly">
-            <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" name="credit_card_name" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-person-bounding-box"></i> Name on Card</label>
-            </div>
-            <div class="form-floating mb-3 col-5">
-                <input type="text" class="form-control" id="floatingInput" name="cc_number" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-credit-card-2-front"></i> Credit Card Number</label>
-            </div>
-            <div class="form-floating mb-3 col-5">
-                <input type="number" class="form-control" id="floatingInput" min="0" name="CVV" placeholder="name@example.com" required>
-                <label for="floatingInput"><i class="bi bi-credit-card-2-back"></i> CVV</label>
-            </div>
-            <div class="form-floating mb-3 col-5">
-                <input type="month" class="form-control" id="floatingInput" name="expiration_date" placeholder="name@example.com" required style="text-transform: uppercase;">
-                <label for="floatingInput"><i class="bi bi-calendar2-x" ></i> Expiry Date</label>
-            </div>
-        </div>
+    
     </section>
 
-    <section class="container">
-        <hr class="blackhr">
-        <h2>Total Price: <span id="totalPrice"></span></h2>
-        <hr class="blackhr">
-    </section>
-
-    <section id="promoCode" class="endGame container d-flex justify-content-between">
+    <section id="promoCode" class="endGame container mt-7 d-flex justify-content-between">
         <div>
             <h5>Do you have a promo code?</h5>
-            <input type="text" id="pCode" name="promo">
-            <input class="px-2" type="submit" value="Enter">
+            <div class="d-flex align-items-center">
+                <input id="disabledTextInput" class="form-control p-1" type="text" name="promo">
+                <input class="btn px-3" disabled type="submit" value="Enter">
+            </div>
         </div>
-        <div class="checkOut d-flex d-inline">
+        <div class="d-flex d-inline">
             <input type="submit" id="checkOutEnd" class="btn btn-block btn-primary shadow" data-bs-target="#endGameModal" value="CHECKOUT!">
         </div>
     </section>
@@ -163,10 +178,10 @@
               <h2 class="modal-title mt-3 mb-0">Game Over!</h2>
             </div>
             <div class="modal-body">
-                <h3 class="mb-3"><i class="bi bi-emoji-smile"></i> Congratulations for completing the game!</h3>
-                <hr>
-                <h2>Post-game result:</h2>
-                <table class="table">
+                <!-- <h3 class="mb-3"><i class="bi bi-emoji-smile"></i> Congratulations for completing the game!</h3>
+                <hr> -->
+                <h3>Post-game result:</h3>
+                <table class="table mt-3">
                     <thead>
                         <tr>
                             <th class="fs-5" scope="col"><i class="bi bi-person-badge-fill"></i> Name</th>
@@ -176,17 +191,16 @@
                         </tr>
                     </thead>
                     <tr>
-                        <td class="col-4"><input type="text" required minlength="3" class="form-control border-0" id="exampleInput name" aria-describedby="emailHelp" placeholder="Enter Your Name Here"></td>
-                        <td class="fs-5" id="time">99:99:99</td>
-                        <td class="fs-5" id="score">99999999</td>
-                        <td class="fs-5" id="accuracy">999%</td>
+                        <td class="col-4"><input type="text" required minlength="3" class="form-control border-0" id="name" aria-describedby="emailHelp" placeholder="Enter Your Name Here"></td>
+                        <td class="fs-5" id="time"></td>
+                        <td class="fs-5" id="score"></td>
+                        <td class="fs-5" id="accuracy"></td>
                     </tr>
                 </table>
-                <hr class="blackhr">
             </div>
             <div class="modal-footer d-flex mb-3 col-12 justify-content-between">
                 <p class="fs-5 ms-1"><i class="bi bi-twitch"></i> Thank you for playing!</p>
-                <button id="finish" type="submit" class="btn btn-primary" href="catalogPage.html" onclick=""><i class="bi bi-trophy-fill"></i> FINISH</button>
+                <button id="finish" type="submit" class="btn btn-primary"><i class="bi bi-trophy-fill"></i> FINISH</button>
             </div>
           </div>
         </form>

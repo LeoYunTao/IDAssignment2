@@ -27,7 +27,7 @@
   <body>
     <section class="container mt-8">
       <p class="mb-0 fs-3 lh-1">Welcome!</p>
-      <h1 class="mt-0"><span class="main-color">Dummy</span> Shop</h1>
+      <h1 class="mt-0"><span class="main-color">Commerce</span> Inc.</h1>
 
       <div
         id="carouselExampleDark"
@@ -55,6 +55,48 @@
             data-bs-slide-to="2"
             aria-label="Slide 3"
           ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="3"
+            aria-label="Slide 4"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="4"
+            aria-label="Slide 5"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="5"
+            aria-label="Slide 6"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="6"
+            aria-label="Slide 7"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="7"
+            aria-label="Slide 8"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="8"
+            aria-label="Slide 9"
+          ></button>
+          <button
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide-to="9"
+            aria-label="Slide 10"
+          ></button>
         </div>
         <div class="carousel-inner rounded">
           <div class="carousel-item active" data-bs-interval="3000">
@@ -74,6 +116,55 @@
           <div class="carousel-item" data-bs-interval="3000">
             <img
               src="images/home-3593857_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/handbag-1478814_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/coffee-792113_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/dumbbells-2465478_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/tshirt-2428521_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/clock-2752610_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/cooking-5880136_1920.jpg"
+              class="d-block img-fluid w-100"
+              alt="..."
+            />
+          </div>
+          <div class="carousel-item" data-bs-interval="3000">
+            <img
+              src="images/music-1290087_1920.jpg"
               class="d-block img-fluid w-100"
               alt="..."
             />
@@ -121,33 +212,38 @@
     <section class="container mt-7">
       <h2 class="mb-5">Search for your items here!</h2>
 
-      <div class="mb-4 d-flex flex-wrap">
-        <form id="searchArea" class="form-floating mb-3 button-in-search-bar me-4">
-          <input
-            type="text"
-            class="form-control form-control-lg rounded-4"
-            id="floatingInput"
-            placeholder="name@example.com"
-            name="search"
-          />
-          <label id="floatingLabel" for="floatingInput"
-            ><i class="bi bi-search"></i> &nbsp; Search for your items
-            here</label
+      <div class="mb-4 row">
+        <div class="col-12 col-md-7 col-lg-5">
+          <form id="searchArea" class="form-floating mb-3 button-in-search-bar me-4 w-100">
+            <input
+              type="text"
+              class="form-control form-control-lg rounded-4"
+              id="floatingInput"
+              placeholder="name@example.com"
+              name="search"
+            />
+            <label id="floatingLabel" for="floatingInput"
+              ><i class="bi bi-search"></i> &nbsp; Search for your items
+              here</label
+            >
+            <input
+              type="submit"
+              class="btn btn-primary btn-sm d-flex rounded-4"
+              value="Search"
+            />
+          </form>
+        </div>
+
+        <div class="col-12 col-md-3 col-lg-2">
+          <a href="checkout.html" id="checkOutBtn" class="btn btn-primary rounded-4 fs-5 w-100 ms-0">
+            <i class="bi bi-cart-fill"></i> <span id="cartItems">0</span></a
           >
-          <input
-            type="submit"
-            class="btn btn-primary btn-sm d-flex rounded-4"
-            value="Search"
-          />
-        </form>
-        <a href="checkout.html" id="checkOutBtn" class="btn btn-primary rounded-4 fs-5"
-          ><i class="bi bi-cart-fill"></i> <span id="cartItems">0</span></a
-        >
-        <div class="dropdown d-lg-none" id="filter-category">
-          <button class="btn btn-primary dropdown-toggle" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
+        </div>
+        <div class="dropdown d-lg-none col-12" id="filter-category">
+          <button class="btn btn-primary dropdown-toggle w-100 mt-2" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
             Category
           </button>
-          <ul class="dropdown-menu rounded" aria-labelledby="filter-category-btn"></ul>
+          <ul class="dropdown-menu rounded w-100" aria-labelledby="filter-category-btn"></ul>
         </div>
       </div>
       <!-- Text need to be change depending on what is available in the api -->

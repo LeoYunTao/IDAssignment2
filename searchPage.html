@@ -15,39 +15,44 @@
         <p class="mb-1 lh-1"><a href="catalogPage.html" class="text-decoration-none">Home</a> <i class="bi bi-arrow-right-short"></i> Search</p>
         <h1 class="searchResult mt-0">Search</h1>
     </section>
-    <section class="container mt-5">
-        <div class="mb-4 d-flex flex-wrap">
-          <form id="searchArea" class="form-floating mb-3 button-in-search-bar me-4">
-          <input
-            type="text"
-            class="form-control form-control-lg rounded-4"
-            id="floatingInput"
-            placeholder="name@example.com"
-            name="search"
-          />
-          <label id="floatingLabel" for="floatingInput"
-            ><i class="bi bi-search"></i> &nbsp; Search for your items
-            here</label
-          >
-          <input
-            type="submit"
-            class="btn btn-primary btn-sm d-flex rounded-4"
-            value="Search"
-          />
-        </form>
-          <a id="checkOutBtn" href="checkout.html" class="btn btn-primary rounded-4 fs-5 me-4 mb-3"
-            ><i class="bi bi-cart-fill"></i> <span id="cartItems">0</span></a
-          >
-          <div class="dropdown d-lg-none" id="filter-category">
-            <button class="btn btn-primary dropdown-toggle" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
-              Category
-            </button>
-            <ul class="dropdown-menu rounded" aria-labelledby="filter-category-btn"></ul>
-          </div>
+    <section class="container mt-7">
+      <div class="mb-4 row">
+        <div class="col-12 col-md-7 col-lg-5">
+          <form id="searchArea" class="form-floating mb-3 button-in-search-bar me-4 w-100">
+            <input
+              type="text"
+              class="form-control form-control-lg rounded-4"
+              id="floatingInput"
+              placeholder="name@example.com"
+              name="search"
+            />
+            <label id="floatingLabel" for="floatingInput"
+              ><i class="bi bi-search"></i> &nbsp; Search for your items
+              here</label
+            >
+            <input
+              type="submit"
+              class="btn btn-primary btn-sm d-flex rounded-4"
+              value="Search"
+            />
+          </form>
         </div>
-        <!-- Text need to be change depending on what is available in the api -->
-        <div id="category" class="d-lg-block d-none"></div>
-      </section>
+
+        <div class="col-12 col-md-3 col-lg-2">
+          <a href="checkout.html" id="checkOutBtn" class="btn btn-primary rounded-4 fs-5 w-100 ms-0">
+            <i class="bi bi-cart-fill"></i> <span id="cartItems">0</span></a
+          >
+        </div>
+        <div class="dropdown d-lg-none col-12" id="filter-category">
+          <button class="btn btn-primary dropdown-toggle w-100 mt-2" type="button" id="filter-category-btn" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+          </button>
+          <ul class="dropdown-menu rounded w-100" aria-labelledby="filter-category-btn"></ul>
+        </div>
+      </div>
+      <!-- Text need to be change depending on what is available in the api -->
+      <div id="category" class="d-lg-block d-none"></div>
+    </section>
     <br>
     <br>
     <br>
@@ -56,17 +61,17 @@
             <p class="mb-0"><span id="resultNum" ></span> results for <span id="productName"></span></p>
             <div class="dropdown">
                 <p class="d-inline me-3">Sort By:</p>
-                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                Name Ascending
+                <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" class="currentlySelected" data-bs-toggle="dropdown" aria-expanded="false">
+                  Default
                 </button>
                 <ul class="dropdown-menu rounded" aria-labelledby="dropdownMenuButton1">
-                <li><a class="dropdown-item btn" href="#">Name Ascending</a></li>
-                <li><a class="dropdown-item btn" href="#">Price Ascending</a></li>
-                <li><a class="dropdown-item btn" href="#">Rating Descending</a></li>
+                  <li><button id="nofilter" class="dropdown-item btn" value ="No Filter" href="#" onclick="sortBy('Default')">Default</button></li>
+                  <li><button id="nameasc" class="dropdown-item btn" value ="Name Ascending" href="#" onclick="sortBy('Name: A to Z')">Name: A to Z</button></li>
+                  <li><button id="priceasc" class="dropdown-item btn" value ="Price Ascending" href="#" onclick="sortBy('Price: Low to High')">Price: Low to High</button></li>
+                  <li><button id="ratingdesc" class="dropdown-item btn" value ="Rating Descending" href="#" onclick="sortBy('Price: High to Low')">Price: High to Low</button></li>
                 </ul>
             </div>
-        </div>
-
+          </div>
 
         <!-- d-flex flex-wrap justify-content-between -->
         <div class="card-group catalog mt-6 searchExplore" id="explore"></div>

@@ -34,7 +34,7 @@
             
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active mx-2" aria-current="page" href="index.html">Home</a>
+                    <a class="nav-link mx-2" aria-current="page" href="index.html">Home</a>
                     <a class="nav-link mx-2" href="leaderboard.html">Leaderboard</a>
                     <a class="nav-link mx-2 active" href="rewards.html">Rewards</a>
                 </div>
@@ -45,23 +45,72 @@
 
     <section class="container mt-8">
        <h1><i class="bi bi-currency-exchange"></i> Rewards</h1>
-       <p>Claim your prizes now</p> 
+       <p class="fs-3">Claim your prize!</p>
+       <p>Pick 1 from the available offers</p> 
     </section>
-
-    <section class="rewards container mt-5">
+    <section class="container mt-5">
+        <h4>Your score: <span id="score">0</span></h4>
+    </section>
+    
+    <section class="rewards container mt-4 d-flex flex-wrap">
         <div class="card-group catalog">
             <div class="card-full">
                 <a href="" class="card rounded-4">
                     <img src="images/paypal-784404.png" class="card-img-top rounded-4" alt="...">
                     <div class="card-body">
                       <h4 class="card-title mt-1">PayPal</h4>
-                      <p>Gift Card</p>
+                      <p><i class="bi bi-cash-coin"></i> 10 Gift Card</p>
                     </div>
                     <div class="card-footer bg-transparent border-0">
-                      <h4>S$100.00</h4>
+                      <h4><i class="bi bi-exclamation-circle-fill"> </i><span>17</span> points</h4>
                     </div>
                 </a>
-                <button class="btn btn-primary">Redeem</button>
+                <button id="redeemBtn" class="btn btn-primary" onclick="redeemCode(10)">Redeem</button>
+            </div>
+        </div>
+        <div class="card-group catalog">
+            <div class="card-full">
+                <a href="" class="card rounded-4">
+                    <img src="images/380809_card_master_mastercard_icon.png" class="card-img-top rounded-4" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title mt-1">MasterCard</h4>
+                      <p><i class="bi bi-cash-coin"></i> 10 Free Credit</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <h4><i class="bi bi-exclamation-circle-fill"> </i><span>10</span> points</h4>
+                    </div>
+                </a>
+                <button class="btn btn-primary" onclick="redeemCode(10)">Redeem</button>
+            </div>
+        </div>
+        <div class="card-group catalog">
+            <div class="card-full">
+                <a href="" class="card rounded-4">
+                    <img src="images/294654_visa_icon.png" class="card-img-top rounded-4" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title mt-1">Visa</h4>
+                      <p><i class="bi bi-cash-coin"></i> 10 Gift Card</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <h4><i class="bi bi-exclamation-circle-fill"> </i><span>10</span> points</h4>
+                    </div>
+                </a>
+                <button class="btn btn-primary" onclick="redeemCode(10)">Redeem</button>
+            </div>
+        </div>
+        <div class="card-group catalog">
+            <div class="card-full">
+                <a href="" class="card rounded-4">
+                    <img src="images/4373073_amex_card_credit_logo_logos_icon.png" class="card-img-top rounded-4" alt="...">
+                    <div class="card-body">
+                      <h4 class="card-title mt-1">American Express</h4>
+                      <p><i class="bi bi-cash-coin"></i> 10 Free Credit</p>
+                    </div>
+                    <div class="card-footer bg-transparent border-0">
+                        <h4><i class="bi bi-exclamation-circle-fill"> </i><span>30</span> points</h4>
+                    </div>
+                </a>
+                <button class="btn btn-primary" onclick="redeemCode(10)">Redeem</button>
             </div>
         </div>
     </section>
@@ -72,6 +121,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/rewards.js"></script>
     <script src="js/catalog.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

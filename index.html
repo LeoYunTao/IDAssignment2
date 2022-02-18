@@ -61,21 +61,21 @@
                         <h1 class="me-5"><span class="main-color">Speedrun</span> Your Way To Success!</h1>
                         <p class="mt-4"><i class="bi bi-trophy"></i> Win rewards by racing against the clock and compete with other players!</p>
                         <div class="mt-6">
-                            <button class="btn btn-primary me-4" href="catalogPage.html" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();"><i class="bi bi-play"></i> Play Now</button>
-                            <a class="btn btn-outline-primary" href="#race-against-time"><i class="bi bi-info-lg"></i> Learn More</a>
+                            <button class="btn btn-primary me-4 mb-4" href="catalogPage.html" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();"><i class="bi bi-play-fill"></i> Play Now</button>
+                            <a class="btn btn-outline-primary mb-4" href="#race-against-time"><i class="bi bi-info-lg"></i> Learn More</a>
                         </div>
                     </div>
                 </section>
                 <section class="col-12 col-md-5">
-                    <lottie-player src="https://assets8.lottiefiles.com/packages/lf20_yr6zz3wv.json" background="transparent"  speed="1"  style="width: 130%; height: 130%; margin-left: -20%;"  loop  autoplay></lottie-player>
+                    <lottie-player id="indexMainLottie" src="https://assets8.lottiefiles.com/packages/lf20_yr6zz3wv.json" background="transparent"  speed="1" style="width: 130%; height: 130%; margin-left: -20%;"  loop  autoplay></lottie-player>
                 </section>
             </div>
 
             <div class="row" id="race-against-time">
                 <div class="col-12 col-md-6 my-auto">
                     <div>
-                        <h2><i class="bi bi-stopwatch-fill"></i> Race <span class="main-color">Against Time</span></h2>
-                        <p>An eCommerce speedrun game! Featuring; A website with the combination of a game with the themes of an eCommerce site. Race against time and compete with other players to get the best time! Do tasks! Add items to the shopping cart! Complete the shopping list! And click your way to victory! What's more? Win attractive prizes when you make it onto the leaderboard!</p>
+                        <h2><!--<i class="bi bi-stopwatch"></i>--> Race <span class="main-color">Against Time</span></h2>
+                        <p>An eCommerce speedrun game! Featuring; A website with the combination of a game with the themes of an eCommerce site. Race against time! Buy items! Add items to the shopping cart! Complete the shopping list! And click your way to victory!</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -90,7 +90,7 @@
                 <div class="col-12 col-md-6 my-auto">
                     <div style="margin-bottom: -120px;">
                         <h2 class="text-end">Compete Against <span class="main-color">Other Players</span></h2>
-                        <p class="text-end">An eCommerce speedrun game! Featuring; A website with the combination of a game with the themes of an eCommerce site. Race against time and compete with other players to get the best time! Do tasks! Add items to the shopping cart! Complete the shopping list! And click your way to victory! What's more? Win attractive prizes when you make it onto the leaderboard!</p>
+                        <p class="text-end">Compete against other players to get the best time! Show others you can click faster more accurately and efficiently! Make it into the top 100 hall of fame in the leaderboard!</p>
                     </div>
                 </div>
             </div>
@@ -99,7 +99,7 @@
                 <div class="col-12 col-md-6 my-auto">
                     <div style="margin-bottom: -120px;">
                         <h2>Win <span class="main-color"><i class="bi bi-award"></i> Rewards</span> And <span class="main-color">Prizes</span></h2>
-                        <p>An eCommerce speedrun game! Featuring; A website with the combination of a game with the themes of an eCommerce site. Race against time and compete with other players to get the best time! Do tasks! Add items to the shopping cart! Complete the shopping list! And click your way to victory! What's more? Win attractive prizes when you make it onto the leaderboard!</p>
+                        <p>What's more? Win attractive prizes when you make it onto the leaderboard! Free credit and gift cards are waiting for you at the end of the game based on your score! What are you waiting for?</p>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
@@ -109,14 +109,38 @@
         </section>
     
         <section class="bg-primary overflow-auto">
-            <h2 class="text-center mt-7 mb-2"><i class="bi bi-stars"></i> Start Speedrunning Now <i class="bi bi-stars"></i></h2>
-            <p class="text-center">and win attractive prizes</p>
+            <h2 class="text-md-center text-md-start px-3 mt-7 mb-2"><i class="bi bi-stars"></i> Start Speedrunning Now <i class="bi bi-stars"></i></h2>
+            <p class="text-md-center text-md-start px-3">and win attractive prizes</p>
             
-            <div class="text-center mt-6 mb-7">
+            <div class="text-md-center text-md-start mt-6 px-3 mb-7">
                 <button id="bannerBtn" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#loadingModal" onclick="startGame();">Play Now</button>
             </div>
         </section>
-        <br>
+
+        <section class="container mt-6">
+            <div class="row gx-5 flex-md-row flex-row-reverse">
+                <div class="col-12 col-md-6">
+                    <lottie-player src="https://assets1.lottiefiles.com/datafiles/nZgj7wTd56UtH6m/data.json" background="transparent"  speed="1"  style="width: 100%; height: 100%;"  loop  autoplay></lottie-player>
+                </div>
+
+                <div class="col-12 col-md-6 my-auto">
+                    <div class="row gx-5 mb-0">
+                        <div class="col-md-10 col-12">
+                            <h2 class="text-end">Enjoying This Game?</span></h2>
+                            <p class="text-end">Help us spread this game by sharing it with your friends and family <3</p>
+                        </div>
+                        <div class="col-md-2 col-12 flex-md-column justify-content-end d-flex">
+                            <a href="https://www.facebook.com/" class="mb-4 ms-4 ms-md-0"><img width="36px" src="images/5282541_fb_social media_facebook_facebook logo_social network_icon.png" alt="facebook"></a>
+                            <a href="https://www.instagram.com/" class="mb-4 ms-4 ms-md-0"><img width="36px" src="images/5282544_camera_instagram_social media_social network_instagram logo_icon.png" alt="instagram"></a>
+                            <a href="https://www.twitter.com/" class="mb-4 ms-4 ms-md-0"><img width="36px" src="images/5282551_tweet_twitter_twitter logo_icon.png" alt="twitter"></a>
+                            <a href="https://www.whatsapp.com/" class="mb-4 ms-4 ms-md-0"><img width="36px" src="images/5282549_call_chat_mobile_whatsapp_whatsapp logo_icon.png" alt="whatsapp"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- <br>
         <hr>
         <hr class="blackhr">
         <br>
@@ -145,7 +169,7 @@
                 </div>
             </div>
         </section>
-        <hr class="blackhr mt-5">
+        <hr class="blackhr mt-5"> -->
     </main>
 
     <footer class="container ">
@@ -153,10 +177,10 @@
     </footer>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="js/main.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+    <script src="js/main.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 </body>
 
