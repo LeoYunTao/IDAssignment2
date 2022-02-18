@@ -446,7 +446,7 @@ if (window.location.pathname != PATHNAME + "/index.html" && window.location.path
     
             $("#time").text(millisecondsToMinutesAndSeconds(timeTaken));
             $("#score").text(score);
-            $("#accuracy").text(totalAccuracy * 100 + "%");
+            $("#accuracy").text((totalAccuracy * 100).toFixed(2)+ "%");
 
             localStorage.setItem("score", score);
 
