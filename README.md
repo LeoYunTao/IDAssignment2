@@ -72,6 +72,8 @@ Bugs:
 - Button-primay color sometimes revert back to its original color
 - Small change of getting stuck in the loading page when pressed the play now button
 
+link for website: https://leoyuntao.github.io/IDAssignment2/
+
 -----------------------
 
 Credits
@@ -92,4 +94,3 @@ Acknowledgements
 - [Dribble](https://dribbble.com/) for design inspirations
 
 -----------------------
-Javascript yun tao pls add
