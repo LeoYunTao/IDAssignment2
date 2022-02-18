@@ -16,12 +16,18 @@ Features:
 - Timer for the game
 - Restart button for the game
 - End game button
+- 404 Page
 
 Future Features:
 - Add more variations of products and pictures
 - Allow the user to change the theme of the website
 - New difficulty levels
 - Add transition or loading pages
+- Able to change the colour of the product and customization
+- Login and signup system
+- Promocode for checkout
+- Instruction on how to play the game
+- Add the ability to add comments
 
 -----------------------
 
@@ -60,6 +66,10 @@ Bugs:
 - Home button in active state even though user clicked on another page (Button not properly greyed out)
 - !!!!!!!! Number of sales does not appear for products under the popular tag in catalog page
 - Product Category appears as undefined in the shopping list
+- Error 400 BadRequest when posting data to restDB
+- Time appearing in ISO format instead of minutes and seconds only
+- Google chrome display certain elements with the wrong css e.g(wrong width)
+- Button-primay color sometimes revert back to its original color
 
 -----------------------
 
@@ -75,7 +85,9 @@ Media
 - [Pixabay](https://pixabay.com/) for all images and api used in the website
 - [Lottie](https://lottiefiles.com/) for all lottie animations
 - [Iconfinder](https://www.iconfinder.com/social-media-icons) for social media icons
+
 Acknowledgements
+- [StackOverflow](https://stackoverflow.com/) for learning
 - [Dribble](https://dribbble.com/) for design inspirations
 
 -----------------------
